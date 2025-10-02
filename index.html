@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SDP – Solución Digital Pyme</title>
+
+  <!-- Fuentes y librerías externas -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("o3otnS-8gDPc6gKr1");
+  })();
+</script>
+
+
+  <style>
+
+    /* Normalización cross-browser */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  font-size: 16px; /* Tamaño base fijo */
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+    :root{
+      --azul: #0d3b66;
+      --naranja: #ff6b00;
+      --gris-claro: #f5f5f5;
+      --blanco: #ffffff;
+      --gris-text: #333333;
+      --muted: #6b7280;
+      --radius: 12px;
+      --container: 1100px;
+      --azul-footer: #0d3b66;
+      --footer-overlap: 28px;
+      --footer-height: 72px;
+    }
+/* Personalización de la barra de scroll */
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0d3b66 0%, #1e4a66 100%);
+  border-radius: 6px;
+  border: 2px solid #f5f5f5;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ff6b00 0%, #ff8533 100%);
+  transform: scale(1.1);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #0d3b66;
+}
+
+/* Para navegadores Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #0d3b66 #f5f5f5;
+}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Poppins',system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      color:var(--gris-text);
+      background:var(--gris-claro);
+      line-height:1.5;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--container);margin:0 auto;padding:0 20px;}
+
+    /* Header */
+    header.site-header{
+      background:rgba(13,59,102,0.95);
+      color:var(--blanco);
+      position:sticky;top:0;z-index:80;
+      box-shadow:0 2px 8px rgba(0,0,0,0.08);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 20px;max-width:var(--container);margin:0 auto;}
+    .brand{display:flex;align-items:center;gap:12px;}
+    .brand img{width:44px;height:44px;object-fit:contain;border-radius:8px;background:var(--blanco);padding:4px;}
+    .brand h3{margin:0;font-size:1.05rem;font-weight:700;}
+    nav.menu{display:flex;gap:18px;align-items:center;}
+    nav.menu a{color:rgba(255,255,255,0.95);font-weight:600;padding:8px;border-radius:6px;transition:background 0.3s ease;}
+    nav.menu a:hover{background:rgba(255,255,255,0.06)}
+
+    /* Mobile menu */
+    .mobile-menu-toggle{display:none;background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;}
+    @media (max-width: 768px) {
+      .mobile-menu-toggle{display:block;}
+      nav.menu{display:none;position:absolute;top:100%;left:0;right:0;background:var(--azul);flex-direction:column;padding:20px;gap:10px;}
+      nav.menu.active{display:flex;}
+      nav.menu a{display:block;padding:12px;width:100%;}
+    }
+
+    /* Hero mejorado */
+    .hero{
+      padding:82px 0 70px;
+      background-image:url('assets/hero-bg.jpg');
+      background-size:cover;background-position:center;
+      position:relative;color:var(--blanco);
+    }
+    .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,59,102,0.75),rgba(0,0,0,0.15));z-index:0;}
+    .hero-inner{position:relative;z-index:2;display:flex;align-items:flex-start;gap:40px;justify-content:space-between;flex-wrap:wrap;padding:0 20px;}
+    .hero-left{flex:1;max-width:600px;}
+    .eyebrow{display:inline-block;background:rgba(255,255,255,0.1);padding:6px 10px;border-radius:999px;font-weight:600;font-size:0.85rem;margin-bottom:18px;}
+    .hero h1{margin:0 0 18px;font-size:2.2rem;font-weight:700;line-height:1.2;}
+    .hero p.lead{margin:0 0 22px;font-size:1.05rem;color:rgba(255,255,255,0.9);}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+    .btn-primary{background:var(--naranja);color:var(--blanco);padding:12px 20px;border-radius:10px;font-weight:700;border:none;cursor:pointer;transition:all 0.3s ease;}
+    .btn-primary:hover{background:#ff8533;transform:translateY(-1px);}
+    .btn-outline{background:transparent;color:var(--blanco);border:2px solid rgba(255,255,255,0.18);padding:10px 18px;border-radius:10px;transition:all 0.3s ease;}
+    .btn-outline:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.4);}
+    
+    .trust{margin-top:18px;display:flex;gap:12px;align-items:center;}
+    .stars{color:#FFD166;font-size:1.15rem;}
+    .trust small{color:rgba(255,255,255,0.9);font-weight:600;}
+    
+    /* Hero Form mejorado */
+    .hero-form{
+      flex:0 0 380px;
+      background:rgba(255, 255, 255, 0.95);
+      backdrop-filter:blur(10px);
+      padding:24px;
+      border-radius:12px;
+      box-shadow:0 8px 32px rgba(0, 0, 0, 0.1);
+      border:1px solid rgba(255, 255, 255, 0.2);
+    }
+    .hero-form h3{margin:0 0 20px;color:var(--azul);font-size:1.25rem;font-weight:600;}
+    .hero-form .form-group{margin-bottom:16px;}
+    .hero-form input, .hero-form textarea, .hero-form select{
+      width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;font-size:14px;
+      transition:border-color 0.3s ease, box-shadow 0.3s ease;font-family:inherit;
+    }
+    .hero-form input:focus, .hero-form textarea:focus, .hero-form select:focus{
+      outline:none;border-color:var(--azul);box-shadow:0 0 0 2px rgba(13, 59, 102, 0.1);
+    }
+    .hero-form button[type="submit"]{
+      width:100%;background:var(--naranja);color:white;padding:12px;border:none;
+      border-radius:6px;font-size:16px;font-weight:500;cursor:pointer;
+      transition:background-color 0.3s ease;
+    }
+    .hero-form button[type="submit"]:hover{background:#ff8533;}
+    
+    /* Audio toggle mejorado */
+    .audio-toggle{
+      background:transparent;border:2px solid white;color:white;width:44px;height:44px;
+      border-radius:50%;display:flex;align-items:center;justify-content:center;
+      cursor:pointer;transition:all 0.3s ease;font-size:18px;
+    }
+    .audio-toggle:hover{background:rgba(255,255,255,0.1);transform:scale(1.05);}
+    .audio-toggle.muted{opacity:0.6;}
+
+    /* Sección Nuestra Propuesta */
+    #quehacemos {
+      position:relative;overflow:hidden;width:100%;min-height:500px;
+      display:flex;align-items:center;justify-content:center;margin-top:-50px;padding:80px 0;
+    }
+    #quehacemos .bg-overlay {
+      position:absolute;inset:0;
+      background:linear-gradient(180deg, 
+        rgba(245,245,245,0) 0%,rgba(245,245,245,0.3) 15%,rgba(245,245,245,0.7) 35%,
+        rgba(255,255,255,0.85) 60%,rgba(255,255,255,0.95) 80%,rgba(255,255,255,1) 100%),
+        url('imagen/ch.jpg');
+      background-size:cover;background-position:center;z-index:0;
+    }
+    #quehacemos .content {
+      position:relative;z-index:1;text-align:center;max-width:var(--container);
+      padding:60px 20px;background:rgba(255, 255, 255, 0.9);border-radius:16px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);backdrop-filter:blur(10px);
+    }
+    #quehacemos .content h2 {
+      color:var(--azul);font-size:2rem;font-weight:700;margin-bottom:20px;
+      text-shadow:0 2px 4px rgba(255,255,255,0.8);
+    }
+    #quehacemos .content p {
+      color:var(--gris-text);font-size:1.2rem;font-weight:500;margin:0 auto;
+      max-width:800px;text-shadow:0 1px 2px rgba(255,255,255,0.8);
+    }
+
+    /* Secciones generales */
+    main{padding:50px 0 80px;}
+    section.block{padding:54px 0;}
+    .section-title{text-align:center;margin-bottom:28px;}
+    .section-title h2{color:var(--azul);font-size:1.8rem;margin:0;font-weight:700;}
+    .section-title p{margin:8px auto 0;color:var(--muted);max-width:760px;font-size:1.1rem;}
+
+    /* Servicios mejorados */
+    .servicios-container {
+      display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+      gap:24px;margin-top:40px;
+    }
+    .card{
+      background:var(--blanco);border-radius:12px;padding:26px;
+      box-shadow:0 8px 24px rgba(13,59,102,0.04);
+      transition:transform 0.3s ease, box-shadow 0.3s ease;
+      border:1px solid rgba(13,59,102,0.05);
+    }
+    .card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(13,59,102,0.08);}
+    .card h3{margin:0 0 12px;color:var(--azul);font-size:1.1rem;font-weight:600;}
+    .card p{margin:0;color:var(--muted);line-height:1.6;font-size:0.95rem;}
+
+    /* Cómo trabajamos - Bootstrap integrado */
+    #como-trabajamos{background:linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);padding:80px 0;}
+    .process-card{transition:transform 0.3s ease, box-shadow 0.3s ease;}
+    .process-card:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,0.15) !important;}
+    .card-icon{
+      background:linear-gradient(135deg, #0d3b66 0%, #1e4a66 100%);
+      width:70px;height:70px;border-radius:50%;display:flex;align-items:center;
+      justify-content:center;margin:0 auto 20px;color:white;font-size:24px;
+    }
+    .step-number{
+      background:linear-gradient(135deg, #ff6b00 0%, #ff8533 100%);color:white;
+      width:35px;height:35px;border-radius:50%;display:flex;align-items:center;
+      justify-content:center;font-weight:bold;position:absolute;top:-15px;right:15px;font-size:14px;
+    }
+    .section-title-trabajamos{
+      background:linear-gradient(135deg, #0d3b66 0%, #1e4a66 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;font-weight:700;
+    }
+    .card-title-trabajamos{color:#0d3b66;font-weight:600;margin-bottom:15px;}
+    .card-text-trabajamos{color:#6b7280;line-height:1.6;}
+
+    /* Portfolio - manteniendo la funcionalidad original */
+    #testimonios {padding:60px 0;background:var(--blanco);overflow:hidden;}
+    #testimonios .section-title h2 {color:var(--azul);font-size:2.2rem;margin:0 0 15px;font-weight:700;}
+    #testimonios .section-title p {margin:0;color:var(--muted);font-size:1.1rem;max-width:600px;margin:0 auto;}
+    
+    .portfolio-container {
+      position:relative;max-width:1400px;margin:50px auto 0;padding:0 30px;height:500px;overflow:hidden;
+    }
+    .portfolio-slider {height:100%;position:relative;}
+    .portfolio-slide {display:none;padding:60px;height:100%;box-sizing:border-box;overflow:hidden;}
+    .portfolio-slide.active {display:flex;align-items:center;gap:50px;height:100%;}
+    
+    .project-image {
+      flex:1;max-width:500px;border-radius:12px;overflow:hidden;
+      box-shadow:0 8px 24px rgba(13, 59, 102, 0.12);
+    }
+    .project-image img {width:100%;height:350px;object-fit:cover;display:block;transition:transform 0.3s ease;}
+    .project-image:hover img {transform:scale(1.02);}
+    
+    .project-details {flex:1;min-width:0;}
+    .company-badge {
+      background:linear-gradient(135deg, var(--naranja), #ff8533);color:white;
+      padding:6px 14px;border-radius:20px;font-size:0.8rem;font-weight:600;
+      display:inline-block;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.5px;
+    }
+    .project-details h3 {color:var(--azul);font-size:1.8rem;margin:0 0 12px;font-weight:700;}
+    .project-type {color:var(--naranja);font-weight:600;font-size:1rem;margin-bottom:16px;}
+    .project-description {color:var(--gris-text);font-size:1rem;line-height:1.6;margin-bottom:20px;}
+    
+    .project-features {
+      list-style:none;padding:0;margin:0 0 24px;display:grid;
+      grid-template-columns:repeat(2, 1fr);gap:8px;
+    }
+    .project-features li {
+      color:var(--azul);font-weight:500;position:relative;padding-left:18px;font-size:0.9rem;
+    }
+    .project-features li::before {content:'✓';position:absolute;left:0;color:var(--naranja);font-weight:bold;}
+    
+    .project-stats {display:flex;gap:24px;margin-top:24px;}
+    .stat {text-align:center;}
+    .stat-number {display:block;font-size:1.6rem;font-weight:700;color:var(--naranja);margin-bottom:4px;}
+    .stat-label {font-size:0.85rem;color:var(--muted);font-weight:500;}
+    
+    .portfolio-nav {
+      position:absolute;top:325px;transform:translateY(-50%);background:var(--azul);
+      color:white;border:none;width:48px;height:48px;border-radius:50%;font-size:1.2rem;
+      cursor:pointer;transition:all 0.3s ease;z-index:10;display:flex;align-items:center;justify-content:center;
+    }
+    .portfolio-nav:hover {background:var(--naranja);transform:translateY(-50%) scale(1.05);}
+    .portfolio-nav.prev {left:24px;}
+    .portfolio-nav.next {right:24px;}
+    
+    .portfolio-dots {display:flex;justify-content:center;gap:10px;margin-top:30px;}
+    .dot {width:10px;height:10px;border-radius:50%;background:#ddd;cursor:pointer;transition:all 0.3s ease;}
+    .dot.active {background:var(--naranja);transform:scale(1.2);}
+
+    /* Footer mejorado */
+    .partners-footer {
+      background:url('imagen/gcp2.png') no-repeat center center;
+      background-size:cover;height:90px;width:100%;
+    }
+    .site-foot {background-color:#1e4a66;color:white;padding:20px 0;overflow:visible;}
+    .foot-inner {
+      max-width:1200px;margin:0 auto;padding:0 20px;display:flex;
+      justify-content:space-between;align-items:center;flex-wrap:wrap;position:relative;
+    }
+    .footer-left {display:flex;align-items:center;flex:1;}
+    .footer-center {position:absolute;left:50%;transform:translateX(-50%);}
+    .company-name {font-size:16px;font-weight:400;color:white;}
+    .sdp-logo {font-size:32px;font-weight:bold;color:white;letter-spacing:2px;}
+    .footer-right {display:flex;align-items:center;flex:1;justify-content:flex-end;gap:18px;}
+    
+    .scroll-to-top {
+      display:flex;align-items:center;justify-content:center;width:40px;height:40px;
+      background-color:#2c5f7a;border:none;border-radius:4px 4px 0 0;cursor:pointer;
+      transition:all 0.3s ease;text-decoration:none;color:white;font-size:18px;
+      font-weight:bold;position:relative;top:15px;
+    }
+    .scroll-to-top:hover {background-color:#1e4358;transform:translateY(-3px);}
+    .scroll-to-top::before {content:"^";font-size:20px;}
+    
+    .linkedin-icon {
+      display:inline-flex;align-items:center;justify-content:center;text-decoration:none;
+      transition:opacity 0.3s ease;font-weight:bold;font-size:16px;color:white;
+    }
+    .linkedin-icon:hover {opacity:0.8;transform:translateY(-1px);}
+
+    /* Alertas del formulario */
+    .form-alert{
+      margin-top:12px;padding:10px;border-radius:6px;font-size:14px;
+      display:none;transition:all 0.3s ease;
+    }
+    .form-alert.success{background:#d4edda;color:#155724;border:1px solid #c3e6cb;}
+    .form-alert.error{background:#f8d7da;color:#721c24;border:1px solid #f5c6cb;}
+
+    /* Responsive mejorado */
+    @media (max-width: 768px) {
+      .hero h1{font-size:1.8rem;}
+      .hero-inner{flex-direction:column;gap:30px;}
+      .hero-form{flex:none;width:100%;max-width:none;}
+      
+      .servicios-container{grid-template-columns:1fr;gap:20px;}
+      .card-icon{width:60px;height:60px;font-size:20px;}
+      
+      .portfolio-container{height:600px;padding:0 20px;}
+      .portfolio-slide.active{flex-direction:column;gap:30px;padding:40px 20px;}
+      .portfolio-nav{display:none;}
+      .project-image{max-width:100%;order:1;}
+      .project-image img{height:250px;}
+      .project-details{text-align:center;order:2;}
+      .project-features{grid-template-columns:1fr;}
+      
+      .foot-inner{flex-direction:column;gap:15px;text-align:center;}
+      .footer-left, .footer-right{flex:none;justify-content:center;}
+      .footer-center{position:static;transform:none;}
+    }
+
+    @media (max-width: 640px) {
+      .portfolio-container{height:550px;}
+      .project-details h3{font-size:1.3rem;}
+    }
+  </style>
+</head>
+<body>
+
+
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Botón WhatsApp -->
+<a href="https://wa.me/5492346696420" target="_blank" 
+   class="btn btn-success rounded-circle shadow position-fixed d-flex align-items-center justify-content-center whatsapp-btn"
+   id="whatsappBtn"
+   style="bottom: 20px; right: 20px; width: 60px; height: 60px; z-index: 9999;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" 
+       class="bi bi-whatsapp" viewBox="0 0 16 16">
+    <path d="M13.601 2.326A7.902 7.902 0 0 0 8.002 0C3.582 0 0 3.582 0 8.002c0 
+             1.412.368 2.79 1.065 4.012L0 16l4.09-1.05a7.96 7.96 0 0 0 
+             3.912 1.002h.004c4.42 0 8.002-3.582 
+             8.002-8.002a7.95 7.95 0 0 0-2.407-5.624M8.002 
+             14.51a6.53 6.53 0 0 1-3.329-.896l-.238-.141-2.422.622.646-2.356-.155-.242a6.525 
+             6.525 0 0 1-1.002-3.435c0-3.618 2.94-6.558 
+             6.558-6.558a6.53 6.53 0 0 1 4.634 1.922 6.52 6.52 0 0 1 
+             1.924 4.632c0 3.617-2.94 6.556-6.556 6.556m3.615-4.934c-.197-.099-1.168-.577-1.35-.642-.182-.066-.315-.099-.447.099s-.513.642-.629.773c-.116.133-.232.149-.43.05-.197-.1-.833-.308-1.587-.983-.587-.522-.983-1.166-1.099-1.364-.116-.198-.013-.305.087-.403.089-.089.198-.232.296-.347.099-.116.132-.198.198-.33.066-.133.033-.248-.017-.347-.05-.099-.447-1.077-.612-1.473-.162-.389-.327-.336-.447-.342l-.382-.007c-.132 0-.347.05-.53.248-.182.198-.696.681-.696 
+             1.66s.713 1.926.813 2.058c.099.132 1.403 2.14 3.403 3.003.476.205.846.327 
+             1.135.418.477.152.91.13 1.252.079.382-.058 
+             1.168-.477 1.333-.94.164-.464.164-.861.115-.94-.048-.079-.178-.127-.375-.226"/>
+  </svg>
+  <!-- Tooltip -->
+  <span class="whatsapp-tooltip">Contacto vía WhatsApp</span>
+</a>
+
+<!-- Estilos -->
+<style>
+  #whatsappBtn {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  #whatsappBtn.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+  }
+
+  /* Tooltip personalizado */
+  .whatsapp-btn {
+    position: relative;
+    overflow: visible;
+  }
+  .whatsapp-tooltip {
+    position: absolute;
+    right: 70px;
+    background: #25D366;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+  }
+  .whatsapp-btn:hover .whatsapp-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
+
+<!-- Script -->
+<script>
+  const whatsappBtn = document.getElementById("whatsappBtn");
+
+  // Mostrar solo al inicio
+  whatsappBtn.classList.remove("hidden");
+
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > 0) {
+      // Scrolleando hacia abajo -> ocultar
+      whatsappBtn.classList.add("hidden");
+    } else {
+      // Al volver al inicio -> mostrar
+      whatsappBtn.classList.remove("hidden");
+    }
+  });
+</script>
+
+
+
+
+<!-- Header con Bootstrap -->
+<header class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: rgba(13,59,102,0.95); box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+  <div class="container">
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center" href="#" style="gap: 12px;">
+      <img src="" alt="SDP logo" class="rounded" style="width: 44px; height: 44px; object-fit: contain; background: white; padding: 4px;" onerror="this.style.display='none'">
+      <div>
+        <h3 class="mb-0" style="font-size: 1.05rem; font-weight: 700; color: white;">SDP</h3>
+        <small class="d-block" style="font-weight: 600; color: rgba(255,255,255,0.9); font-size: 0.8rem;">Solución Digital Pyme</small>
+      </div>
+    </a>
+
+    <!-- Mobile toggle button -->
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="color: white; font-size: 1.5rem;">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Navigation menu -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <nav class="navbar-nav ms-auto">
+        <a class="nav-link px-3 py-2 rounded" href="#quehacemos" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Propuesta SDP</a>
+        <a class="nav-link px-3 py-2 rounded" href="#servicios" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Servicios</a>
+        <a class="nav-link px-3 py-2 rounded" href="#como-trabajamos" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Cómo trabajamos</a>
+        <a class="nav-link px-3 py-2 rounded" href="#testimonios" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Trabajos</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section con Bootstrap -->
+<section class="hero position-relative text-white overflow-hidden" style="padding: 82px 0 70px; background-image: url('assets/hero-bg.jpg'); background-size: cover; background-position: center;">
+  <!-- Overlay -->
+  <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(180deg,rgba(13,59,102,0.75),rgba(0,0,0,0.15)); z-index: 0;"></div>
+  
+  <div class="container position-relative" style="z-index: 2;">
+    <div class="row align-items-start g-4 g-lg-5">
+      <!-- Hero Left Content -->
+      <div class="col-lg-7 col-xl-6">
+        <div class="hero-content">
+          <div class="eyebrow d-inline-block mb-3 px-3 py-2 rounded-pill" style="background: rgba(255,255,255,0.1); font-weight: 600; font-size: 0.85rem;">
+            Soluciones para PyMEs
+          </div>
+          <h1 class="display-4 fw-bold mb-4" style="line-height: 1.2;">
+            Cuando tus datos están dispersos y tus procesos desordenados, las oportunidades se pierden.
+          </h1>
+          <p class="lead mb-4" style="color: rgba(255,255,255,0.9); font-size: 1.05rem;">
+            Con SDP, empezás a ganar decisiones. Organizamos datos, automatizamos procesos e integramos sistemas para que tu PyME aproveche cada oportunidad.
+          </p>
+          
+          <!-- Hero Actions -->
+          <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+            <a href="#servicios" class="btn btn-outline-light px-4 py-3 rounded-3 fw-bold" style="border: 2px solid rgba(255,255,255,0.18); transition: all 0.3s ease;">
+              Ver servicios
+            </a>
+            <button class="btn btn-outline-light rounded-circle d-flex align-items-center justify-content-center audio-toggle" id="audioToggle" title="Activar/Desactivar audio" style="width: 44px; height: 44px; border: 2px solid white; transition: all 0.3s ease; font-size: 18px;">
+              <i class="fas fa-volume-mute"></i>
+            </button>
+          </div>
+          
+          <!-- Trust indicators -->
+          <div class="trust d-flex align-items-center gap-3">
+            <div class="stars" style="color: #FFD166; font-size: 1.15rem;">★ ★ ★ ★ ★</div>
+            <small style="color: rgba(255,255,255,0.9); font-weight: 600;">Calificación 5.0 en Workana</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Form -->
+      <div class="col-lg-5 col-xl-5 ms-auto">
+        <div class="hero-form p-4 rounded-3" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);">
+          <h3 class="mb-4" style="color: #0d3b66; font-size: 1.25rem; font-weight: 600;">Contactanos via email</h3>
+          <form id="contactForm" onsubmit="handleContact(event)">
+            <div class="mb-3">
+              <input type="text" id="name" name="name" class="form-control py-3" placeholder="Nombre" required style="border: 1px solid #ddd; border-radius: 6px; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
+            </div>
+            <div class="mb-3">
+              <input type="text" id="company" name="company" class="form-control py-3" placeholder="Nombre de empresa" required style="border: 1px solid #ddd; border-radius: 6px; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
+            </div>
+            <div class="mb-3">
+              <select id="country" name="country" class="form-select py-3" required style="border: 1px solid #ddd; border-radius: 6px; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
+                <option value="">Selección de país</option>
+                <option value="AR">Argentina</option>
+                <option value="CL">Chile</option>
+                <option value="UY">Uruguay</option>
+                <option value="PE">Perú</option>
+                <option value="CO">Colombia</option>
+                <option value="MX">México</option>
+                <option value="OTHER">Otro</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <input type="email" id="email" name="email" class="form-control py-3" placeholder="Correo electrónico" required style="border: 1px solid #ddd; border-radius: 6px; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
+            </div>
+            <div class="mb-3">
+              <textarea id="message" name="message" rows="4" class="form-control" placeholder="Contanos en qué podemos ayudarte" required style="border: 1px solid #ddd; border-radius: 6px; transition: border-color 0.3s ease, box-shadow 0.3s ease; resize: vertical;"></textarea>
+            </div>
+            <button type="submit" class="btn w-100 py-3 rounded-3 fw-medium" style="background: #ff6b00; color: white; border: none; font-size: 16px; transition: background-color 0.3s ease;">
+              Enviar mensaje
+            </button>
+            <div id="formAlert" class="form-alert mt-3" style="display: none; padding: 10px; border-radius: 6px; font-size: 14px; transition: all 0.3s ease;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio element -->
+  <audio id="heroAudio" loop autoplay muted>
+    <source src="imagen/audioSDP.mp3" type="audio/mpeg">
+  </audio>
+</section>
+
+<style>
+/* Hover effects para navegación */
+.navbar-nav .nav-link:hover {
+  background: rgba(255,255,255,0.06) !important;
+}
+
+/* Botones hover effects */
+.btn-outline-light:hover {
+  background: rgba(255,255,255,0.1) !important;
+  border-color: rgba(255,255,255,0.4) !important;
+  transform: translateY(-1px);
+}
+
+.audio-toggle:hover {
+  background: rgba(255,255,255,0.1) !important;
+  transform: scale(1.05);
+}
+
+.audio-toggle.muted {
+  opacity: 0.6;
+}
+
+/* Formulario focus states */
+.hero-form .form-control:focus,
+.hero-form .form-select:focus {
+  outline: none !important;
+  border-color: #0d3b66 !important;
+  box-shadow: 0 0 0 2px rgba(13, 59, 102, 0.1) !important;
+}
+
+.hero-form button[type="submit"]:hover {
+  background: #ff8533 !important;
+}
+
+/* Form alerts */
+.form-alert.success {
+  background: #d4edda !important;
+  color: #155724 !important;
+  border: 1px solid #c3e6cb !important;
+}
+
+.form-alert.error {
+  background: #f8d7da !important;
+  color: #721c24 !important;
+  border: 1px solid #f5c6cb !important;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .hero {
+    padding: 60px 0 50px !important;
+  }
+  
+  .hero h1 {
+    font-size: 2rem !important;
+  }
+  
+  .hero-form {
+    margin-top: 2rem;
+  }
+  
+  .navbar-brand h3 {
+    font-size: 0.95rem !important;
+  }
+  
+  .navbar-brand small {
+    font-size: 0.75rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .display-4 {
+    font-size: 1.75rem !important;
+  }
+  
+  .lead {
+    font-size: 1rem !important;
+  }
+}
+</style>
+
+<script>
+
+// Audio toggle functionality
+
+const audioToggle = document.getElementById('audioToggle');
+const heroAudio = document.getElementById('heroAudio');
+
+if (audioToggle && heroAudio) {
+  audioToggle.addEventListener('click', () => {
+    if (heroAudio.paused) {
+      // Reproducir y desmutear
+      heroAudio.play().then(() => {
+        heroAudio.muted = false;
+        audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+        audioToggle.classList.remove('muted');
+      }).catch(err => {
+        console.log('Error al reproducir audio:', err);
+        heroAudio.muted = false;
+        audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+        audioToggle.classList.remove('muted');
+      });
+    } else {
+      // Pausar el audio completamente
+      heroAudio.pause();
+      heroAudio.muted = true;
+      audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
+      audioToggle.classList.add('muted');
+    }
+  });
+}
+
+// Contact form functionality
+function handleContact(e) {
+  e.preventDefault();
+  
+  const submitButton = e.target.querySelector('button[type="submit"]');
+  const alertBox = document.getElementById('formAlert');
+  const originalButtonText = submitButton.textContent;
+  
+  submitButton.disabled = true;
+  submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+  
+  const formData = new FormData();
+  formData.append('name', document.getElementById('name').value.trim());
+  formData.append('company', document.getElementById('company').value.trim());
+  formData.append('country', document.getElementById('country').value);
+  formData.append('email', document.getElementById('email').value.trim());
+  formData.append('message', document.getElementById('message').value.trim());
+  
+  // REEMPLAZA ESTA URL CON LA QUE TE DIO GOOGLE EN EL PASO 2
+  fetch('https://script.google.com/macros/s/AKfycbxcKN8arfKz8aZB0G1WQGsmwyk54zvOwDnoyRNCk90FQd99hWUN00SOYw7pgQC2zdGg/exec', {
+    method: 'POST',
+    mode: 'no-cors', // Importante para Google Apps Script
+    body: formData
+  })
+  .then(() => {
+    alertBox.className = 'form-alert success';
+    alertBox.style.display = 'block';
+    alertBox.innerHTML = '<i class="fas fa-check-circle me-2"></i>¡Mensaje enviado correctamente! Te contactaremos pronto.';
+    document.getElementById('contactForm').reset();
+    
+    setTimeout(() => {
+      alertBox.style.display = 'none';
+    }, 5000);
+  })
+  .catch(error => {
+    console.log('Error:', error);
+    alertBox.className = 'form-alert error';
+    alertBox.style.display = 'block';
+    alertBox.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i>Error al enviar el mensaje. Por favor intenta nuevamente.';
+  })
+  .finally(() => {
+    submitButton.disabled = false;
+    submitButton.textContent = originalButtonText;
+  });
+}
+</script>
+
+<main>
+  
+<section id="quehacemos" class="position-relative overflow-hidden w-100 d-flex align-items-center justify-content-center" style="min-height: 500px; margin-top: -50px; padding: 80px 0;">
+  <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(180deg, rgba(245,245,245,0) 0%, rgba(245,245,245,0.3) 15%, rgba(245,245,245,0.7) 35%, rgba(255,255,255,0.85) 60%, rgba(255,255,255,0.95) 80%, rgba(255,255,255,1) 100%), url('imagen/ch.jpg'); background-size: cover; background-position: center; z-index: 0;"></div>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="position-relative text-center p-5 rounded-4 shadow" style="z-index: 1; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+          <h2 class="display-5 mb-4" style="color: #0d3b66; font-weight: 700; text-shadow: 0 2px 4px rgba(255,255,255,0.8);">Nuestra propuesta</h2>
+          <p class="lead mb-0" style="color: #333333; font-weight: 500; max-width: 800px; margin: 0 auto; text-shadow: 0 1px 2px rgba(255,255,255,0.8);">La transformación digital puede ser un desafío para las PyMEs con recursos limitados. 
+             En SDP acompañamos a cada negocio con un enfoque cercano y humano, ofreciendo soluciones prácticas, asesoramiento continuo y tecnología adaptada a su realidad.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="servicios" class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center mb-5">
+        <h2 class="display-5 mb-3" style="background: linear-gradient(135deg, #0d3b66 0%, #1e4a66 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">Servicios</h2>
+        <p class="lead text-muted">Nos adaptamos a tus necesidades, paso a paso.</p>
+      </div>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm border-0 service-card">
+          <div class="card-body text-center">
+            <div class="service-icon mb-3">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <h5 class="card-title mb-3" style="color: #0d3b66; font-weight: 600;">Automatización de procesos</h5>
+            <p class="card-text" style="color: #6b7280; line-height: 1.6;">Reducción de tareas manuales mediante scripts, integraciones y flujos automáticos.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm border-0 service-card">
+          <div class="card-body text-center">
+            <div class="service-icon mb-3">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h5 class="card-title mb-3" style="color: #0d3b66; font-weight: 600;">Análisis y visualización</h5>
+            <p class="card-text" style="color: #6b7280; line-height: 1.6;">Dashboards y reportes claros para tomar decisiones basadas en datos reales.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm border-0 service-card">
+          <div class="card-body text-center">
+            <div class="service-icon mb-3">
+              <i class="fas fa-globe"></i>
+            </div>
+            <h5 class="card-title mb-3" style="color: #0d3b66; font-weight: 600;">Creación de Páginas Web</h5>
+            <p class="card-text" style="color: #6b7280; line-height: 1.6;">Desarrollamos sitios web profesionales desde cero, incluyendo diseño personalizado, funcionalidades avanzadas y optimización para motores de búsqueda.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm border-0 service-card">
+          <div class="card-body text-center">
+            <div class="service-icon mb-3">
+              <i class="fas fa-link"></i>
+            </div>
+            <h5 class="card-title mb-3" style="color: #0d3b66; font-weight: 600;">Integración de sistemas</h5>
+            <p class="card-text" style="color: #6b7280; line-height: 1.6;">Conectamos tiendas, ERPs, Google Workspace y plataformas clave para centralizar tu operación.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm border-0 service-card">
+          <div class="card-body text-center">
+            <div class="service-icon mb-3">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h5 class="card-title mb-3" style="color: #0d3b66; font-weight: 600;">Inteligencia Artificial</h5>
+            <p class="card-text" style="color: #6b7280; line-height: 1.6;">Implementación de soluciones de IA, incluyendo creación de bots, análisis predictivo y automatización avanzada de procesos.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm border-0 service-card">
+          <div class="card-body text-center">
+            <div class="service-icon mb-3">
+              <i class="fas fa-users"></i>
+            </div>
+            <h5 class="card-title mb-3" style="color: #0d3b66; font-weight: 600;">Reclutamiento y Gestión de Talento</h5>
+            <p class="card-text" style="color: #6b7280; line-height: 1.6;">Procesos de búsqueda, atracción y selección de candidatos para cubrir posiciones clave en tu empresa.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.service-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(13,59,102,0.05);
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(13,59,102,0.08) !important;
+}
+
+.service-icon {
+  background: linear-gradient(135deg, #0d3b66 0%, #1e4a66 100%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  color: white;
+  font-size: 24px;
+}
+</style>
+
+<section id="como-trabajamos" class="process-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center mb-5">
+        <h2 class="display-5 mb-3" style="color: #0d3b66; font-weight: 700;">Cómo trabajamos</h2>
+        <p class="lead text-muted">De la idea a la entrega, siempre con vos</p>
+      </div>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm border-0 process-card position-relative">
+          <div class="step-number">1</div>
+          <div class="card-body text-center">
+            <div class="card-icon">
+              <i class="fas fa-video"></i>
+            </div>
+            <h5 class="card-title-trabajamos">Primer contacto</h5>
+            <p class="card-text-trabajamos">Agendamos una videollamada para entender tu necesidad y objetivos específicos.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm border-0 process-card position-relative">
+          <div class="step-number">2</div>
+          <div class="card-body text-center">
+            <div class="card-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h5 class="card-title-trabajamos">Propuesta</h5>
+            <p class="card-text-trabajamos">Te presentamos una solución personalizada y adaptada a tu proyecto y presupuesto.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm border-0 process-card position-relative">
+          <div class="step-number">3</div>
+          <div class="card-body text-center">
+            <div class="card-icon">
+             <i class="fas fa-code"></i>
+            </div>
+            <h5 class="card-title-trabajamos">Desarrollo</h5>
+            <p class="card-text-trabajamos">Trabajamos en etapas definidas, compartiendo avances de forma clara y transparente.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm border-0 process-card position-relative">
+          <div class="step-number">4</div>
+          <div class="card-body text-center">
+            <div class="card-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <h5 class="card-title-trabajamos">Revisión</h5>
+            <p class="card-text-trabajamos">Recibimos tu feedback detallado y ajustamos todo lo necesario para tu satisfacción.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm border-0 process-card position-relative">
+          <div class="step-number">5</div>
+          <div class="card-body text-center">
+            <div class="card-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <h5 class="card-title-trabajamos">Entrega final</h5>
+            <p class="card-text-trabajamos">Cerramos el proyecto exitosamente y te acompañamos con soporte inicial incluido.</p>
+          </div>
+        </div>
+      </div>
+
+      
+        <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm border-0 process-card position-relative">
+          <div class="step-number">6</div>
+          <div class="card-body text-center">
+            <div class="card-icon">
+              <i class="fas fa-money-check-alt"></i>
+            </div>
+            <h5 class="card-title-trabajamos">Pago único</h5>
+            <p class="card-text-trabajamos">El pago se realiza una vez finalizado el proyecto y entregado conforme a lo acordado.</p>
+          </div>
+        </div>
+      </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+<section id="testimonios">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center mb-5">
+        <h2 class="display-5 mb-3" style="color: #0d3b66; font-weight: 700;">Nuestros últimos desarrollos</h2>
+        <p class="lead text-muted">Proyectos reales que transformaron la operación de nuestros clientes</p>
+      </div>
+    </div>
+
+    <div class="portfolio-container">
+      <div class="portfolio-slider" id="portfolioSlider">
+        
+        <!-- Proyecto 1: Libro de Pases -->
+        <div class="portfolio-slide active">
+          <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+              <div class="project-image">
+                <img src="imagen/ldp.PNG" alt="Libro de Pases - Dashboard" class="img-fluid rounded-3">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="project-info">
+                <div class="company-badge">BigQuery, Automatización & BI</div>
+                <h3>Libro de Pases</h3>
+                <div class="project-type">Plataforma de Análisis de Datos Deportivos</div>
+                <p class="project-description">
+                  Sistema integral de análisis de datos para equipos de producto, implementando tablas en BigQuery y procesos automatizados. Incluye extracción de datos, documentación de procesos y optimización del consumo de APIs.
+                </p>
+                <div class="row g-2 mb-4">
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Creación de tablas en BigQuery</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Documentación completa de procesos</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Extracción automatizada de datos</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Optimización del consumo de APIs</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="project-stats">
+                  <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Transparencia en procesos</span>
+                  </div>
+                  <div class="stat">
+                    <span class="stat-number">80%</span>
+                    <span class="stat-label">Mejora en eficiencia operativa</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proyecto 2: Eduquera Psicoterapias -->
+        <div class="portfolio-slide">
+          <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+              <div class="project-image">
+                <img src="imagen/eduquera.jpg" alt="Eduquera Psicoterapias - Plataforma" class="img-fluid rounded-3">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="project-info">
+                <div class="company-badge">Google Apps Script, ETL & Automatización</div>
+                <h3>Eduquera Psicoterapias</h3>
+                <div class="project-type">Plataforma Educativa y Gestión de Contenidos</div>
+                <p class="project-description">
+                  Sistema integral de gestión educativa desarrollado con Google Apps Script, integrando flujos ETL de múltiples fuentes. La plataforma automatiza la organización de materiales educativos y gestión de usuarios.
+                </p>
+                <div class="row g-2 mb-4">
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Flujos ETL multi-fuente</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Automatización con Google Apps Script</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Gestión automatizada de usuarios</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Email marketing automatizado</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="project-stats">
+                  <div class="stat">
+                    <span class="stat-number">85%</span>
+                    <span class="stat-label">Reducción en tiempos operativos</span>
+                  </div>
+                  <div class="stat">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Mejora en estabilidad del sistema</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proyecto 3: Shine MKTG -->
+        <div class="portfolio-slide">
+          <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+              <div class="project-image">
+                <img src="imagen/shine.PNG" alt="Shine MKTG - Dashboard" class="img-fluid rounded-3">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="project-info">
+                <div class="company-badge">ETL, CRM & Marketing Data</div>
+                <h3>Shine MKTG</h3>
+                <div class="project-type">Gestión de Datos para Campañas de Marketing</div>
+                <p class="project-description">
+                  Proyecto centrado en asegurar la calidad y precisión de los datos en campañas de marketing. Incluyó liderazgo del proceso ETL y optimización de envíos de email marketing.
+                </p>
+                <div class="row g-2 mb-4">
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Limpieza de datos para campañas</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Gestión de bases de datos</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Optimización de email marketing</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Procesos ETL eficientes</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="project-stats">
+                  <div class="stat">
+                    <span class="stat-number">-50%</span>
+                    <span class="stat-label">Tiempo dedicado a limpieza de datos</span>
+                  </div>
+                  <div class="stat">
+                    <span class="stat-number">+90%</span>
+                    <span class="stat-label">Precisión en información</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proyecto 4: Red Mascotera -->
+        <div class="portfolio-slide">
+          <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+              <div class="project-image">
+                <img src="imagen/red.PNG" alt="Red Mascotera - Sistema" class="img-fluid rounded-3">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="project-info">
+                <div class="company-badge">Gestión de Datos & Adopciones</div>
+                <h3>Red Mascotera</h3>
+                <div class="project-type">Base de Datos para Adopciones y Refugios</div>
+                <p class="project-description">
+                  Proyecto enfocado en la gestión y mantenimiento de bases de datos de refugios, adoptantes y mascotas en tránsito. Permitió seguimiento histórico detallado de cada animal.
+                </p>
+                <div class="row g-2 mb-4">
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Gestión de registros de refugios</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Limpieza de datos consistente</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Seguimiento histórico</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Facilitación de adopciones</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="project-stats">
+                  <div class="stat">
+                    <span class="stat-number">+80%</span>
+                    <span class="stat-label">Eficiencia en adopción</span>
+                  </div>
+                  <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Registros actualizados</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proyecto 5: Fuddy -->
+        <div class="portfolio-slide">
+          <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+              <div class="project-image">
+                <img src="imagen/fuddy.PNG" alt="Fuddy - Analytics" class="img-fluid rounded-3">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="project-info">
+                <div class="company-badge">Análisis de Datos & BI</div>
+                <h3>Fuddy</h3>
+                <div class="project-type">Análisis de Consumo en Latinoamérica</div>
+                <p class="project-description">
+                  Proyecto centrado en análisis de datos para identificar tendencias y patrones de consumo en Latinoamérica, con especial foco en Argentina. Los informes apoyaron la planificación estratégica.
+                </p>
+                <div class="row g-2 mb-4">
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Tendencias de consumo</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Análisis regionales</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Informes estratégicos</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="feature-item">
+                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span>Planificación de productos</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="project-stats">
+                  <div class="stat">
+                    <span class="stat-number">+70%</span>
+                    <span class="stat-label">Impacto en decisiones estratégicas</span>
+                  </div>
+                  <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Cobertura análisis regional</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Botones navegación -->
+      <button class="btn position-absolute top-50 translate-middle-y start-0 ms-3 rounded-circle border-0 d-flex align-items-center justify-content-center portfolio-nav-btn" onclick="moveSlide(-1)" style="background: rgba(255, 255, 255, 0.9); color: #0d3b66; width: 48px; height: 48px; font-size: 1.2rem; z-index: 10; transition: all 0.3s ease;">‹</button>
+      <button class="btn position-absolute top-50 translate-middle-y end-0 me-3 rounded-circle border-0 d-flex align-items-center justify-content-center portfolio-nav-btn" onclick="moveSlide(1)" style="background: rgba(255, 255, 255, 0.9); color: #0d3b66; width: 48px; height: 48px; font-size: 1.2rem; z-index: 10; transition: all 0.3s ease;">›</button>
+
+      <!-- Dots -->
+      <div class="portfolio-dots d-flex justify-content-center gap-2 mt-4" id="portfolioDots"></div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+<style>
+.portfolio-slide.active {
+  display: flex !important;
+}
+
+.project-card {
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: scale(1.02);
+}
+
+.portfolio-nav-btn:hover {
+  background: rgba(255, 107, 0, 0.9) !important;
+  color: white !important;
+  transform: translateY(-50%) scale(1.05) !important;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ddd;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: #ff6b00;
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .portfolio-container {
+    height: 600px !important;
+    padding: 0 20px !important;
+  }
+  
+  .portfolio-slide {
+    padding: 40px 20px !important;
+  }
+  
+  .project-card {
+    min-height: 400px !important;
+  }
+  
+  .card-content {
+    padding: 2rem !important;
+  }
+  
+  .card-content h3 {
+    font-size: 1.8rem !important;
+  }
+  
+  .project-stats {
+    gap: 2rem !important;
+  }
+  
+  .portfolio-nav-btn {
+    display: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .project-card {
+    min-height: 350px !important;
+  }
+  
+  .card-content h3 {
+    font-size: 1.5rem !important;
+  }
+}
+</style>
+
+<script>
+// PORTFOLIO SLIDER
+const slides = document.querySelectorAll('.portfolio-slide');
+const dotsContainer = document.getElementById('portfolioDots');
+let currentSlide = 0;
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === index);
+    if (dotsContainer.children[i]) {
+      dotsContainer.children[i].classList.toggle('active', i === index);
+    }
+  });
+}
+
+function moveSlide(dir) {
+  currentSlide += dir;
+  if(currentSlide < 0) currentSlide = slides.length - 1;
+  if(currentSlide >= slides.length) currentSlide = 0;
+  showSlide(currentSlide);
+}
+
+// Crear dots del portfolio
+if (slides.length > 0 && dotsContainer) {
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => {
+      currentSlide = i;
+      showSlide(currentSlide);
+    });
+    dotsContainer.appendChild(dot);
+  });
+}
+
+</script>
+</main>
+
+<!-- PARTNERS FOOTER -->
+<section class="partners-footer">
+  <div class="partners-inner">
+    <p style="color: rgba(255, 255, 255, 0); font-weight: bold;">Partners oficiales</p>
+  </div>
+</section>
+
+<style>
+.partners-footer {
+  background: url('imagen/gcp2.png') no-repeat center center;
+  background-size: cover;
+  height: 64px;
+  width: 100%;
+}
+
+.partners-footer .partners-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+</style>
+
+<!-- Footer Rediseñado -->
+<footer class="site-foot">
+  <div class="foot-inner">
+    <div class="footer-left">
+      <span class="company-name">Integramos. Potenciamos. Crecemos juntos.</span>
+    </div>
+    <div class="footer-center">
+      <span class="sdp-logo">SDP</span>
+    </div>
+    <div class="footer-right">
+      <button class="scroll-to-top" onclick="scrollToTop()" aria-label="Volver al inicio"></button>
+      <a href="https://www.linkedin.com/company/soluci%C3%B3n-digital-pyme/" 
+         class="linkedin-icon" 
+         target="_blank" 
+         rel="noopener noreferrer"
+         aria-label="LinkedIn">
+          in
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // sube suavemente
+    });
+  }
+</script>
+
+
+<script>
+  // Menu móvil
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('active');
+  }
+
+  // Audio toggle
+  const audioToggle = document.getElementById('audioToggle');
+  const heroAudio = document.getElementById('heroAudio');
+  
+  if (audioToggle && heroAudio) {
+    audioToggle.addEventListener('click', () => {
+      if (heroAudio.muted) {
+        heroAudio.muted = false;
+        audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
+        audioToggle.classList.remove('muted');
+      } else {
+        heroAudio.muted = true;
+        audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        audioToggle.classList.add('muted');
+      }
+    });
+  }
+
+  // Scroll to top
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+
+
+  // PORTFOLIO SLIDER
+  const slides = document.querySelectorAll('.portfolio-slide');
+  const dotsContainer = document.getElementById('portfolioDots');
+  let currentSlide = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+      if (dotsContainer.children[i]) {
+        dotsContainer.children[i].classList.toggle('active', i === index);
+      }
+    });
+  }
+
+  function moveSlide(dir) {
+    currentSlide += dir;
+    if(currentSlide < 0) currentSlide = slides.length - 1;
+    if(currentSlide >= slides.length) currentSlide = 0;
+    showSlide(currentSlide);
+  }
+
+  // Crear dots del portfolio
+  if (slides.length > 0 && dotsContainer) {
+    slides.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => {
+        currentSlide = i;
+        showSlide(currentSlide);
+      });
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  // Auto-slide del portfolio (opcional)
+  setInterval(() => {
+    moveSlide(1);
+  }, 8000);
+</script>
+
+
+
+</body>
+</html>
