@@ -470,22 +470,19 @@ html {
       </div>
     </a>
 
-<!-- Mobile toggle button -->
-<button class="navbar-toggler border-0 collapsed" type="button" 
-        data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-  <span class="navbar-toggler-icon"></span>
-</button>
-
+    <!-- Mobile toggle button -->
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="color: white; font-size: 1.5rem;">
+      <i class="fas fa-bars"></i>
+    </button>
 
     <!-- Navigation menu -->
 
 <div class="collapse navbar-collapse" id="navbarNav">
   <nav class="navbar-nav ms-auto">
-    <a class="nav-link px-3 py-2 rounded" href="#quehacemos" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Propuesta SDP</a>
-    <a class="nav-link px-3 py-2 rounded" href="#servicios" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Servicios</a>
-    <a class="nav-link px-3 py-2 rounded" href="#como-trabajamos" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Cómo trabajamos</a>
-    <a class="nav-link px-3 py-2 rounded" href="#testimonios" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Trabajos</a>
+    <a class="nav-link px-3 py-2 rounded" href="#quehacemos" onclick="closeMenu()" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Propuesta SDP</a>
+    <a class="nav-link px-3 py-2 rounded" href="#servicios" onclick="closeMenu()" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Servicios</a>
+    <a class="nav-link px-3 py-2 rounded" href="#como-trabajamos" onclick="closeMenu()" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Cómo trabajamos</a>
+    <a class="nav-link px-3 py-2 rounded" href="#testimonios" onclick="closeMenu()" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Trabajos</a>
   </nav>
 </div>
   </div>
@@ -965,56 +962,50 @@ function handleContact(e) {
     <div class="portfolio-container">
       <div class="portfolio-slider" id="portfolioSlider">
         
-        <!-- Proyecto 1: Libro de Pases -->
+<!-- Proyecto 1 -->
         <div class="portfolio-slide active">
-          <div class="row align-items-center g-5">
-            <div class="col-lg-6">
-              <div class="project-image">
-                <img src="imagen/ldp.PNG" alt="Libro de Pases - Dashboard" class="img-fluid rounded-3">
+          <div class="container">
+            <div class="row g-4">
+              <div class="col-lg-6">
+                <div class="project-image">
+                  <img src="imagen/ldp.PNG" alt="Libro de Pases" class="img-fluid">
+                </div>
               </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="project-info">
-                <div class="company-badge">BigQuery, Automatización & BI</div>
-                <h3>Libro de Pases</h3>
-                <div class="project-type">Plataforma de Análisis de Datos Deportivos</div>
-                <p class="project-description">
-                  Sistema integral de análisis de datos para equipos de producto, implementando tablas en BigQuery y procesos automatizados. Incluye extracción de datos, documentación de procesos y optimización del consumo de APIs.
-                </p>
-                <div class="row g-2 mb-4">
-                  <div class="col-md-6">
+              <div class="col-lg-6">
+                <div class="project-info">
+                  <div class="company-badge">BigQuery, Automatización & BI</div>
+                  <h3>Libro de Pases</h3>
+                  <div class="project-type">Plataforma de Análisis de Datos Deportivos</div>
+                  <p class="project-description">
+                    Sistema integral de análisis de datos para equipos de producto, implementando tablas en BigQuery y procesos automatizados.
+                  </p>
+                  <div class="mb-3">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Creación de tablas en BigQuery</span>
                     </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Documentación completa de procesos</span>
                     </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Extracción automatizada de datos</span>
                     </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Optimización del consumo de APIs</span>
                     </div>
                   </div>
-                </div>
-                <div class="project-stats">
-                  <div class="stat">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Transparencia en procesos</span>
-                  </div>
-                  <div class="stat">
-                    <span class="stat-number">80%</span>
-                    <span class="stat-label">Mejora en eficiencia operativa</span>
+                  <div class="project-stats">
+                    <div class="stat">
+                      <span class="stat-number">100%</span>
+                      <span class="stat-label">Transparencia en procesos</span>
+                    </div>
+                    <div class="stat">
+                      <span class="stat-number">80%</span>
+                      <span class="stat-label">Mejora en eficiencia</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1022,56 +1013,50 @@ function handleContact(e) {
           </div>
         </div>
 
-        <!-- Proyecto 2: Eduquera Psicoterapias -->
+        <!-- Proyecto 2 -->
         <div class="portfolio-slide">
-          <div class="row align-items-center g-5">
-            <div class="col-lg-6">
-              <div class="project-image">
-                <img src="imagen/eduquera.jpg" alt="Eduquera Psicoterapias - Plataforma" class="img-fluid rounded-3">
+          <div class="container">
+            <div class="row g-4">
+              <div class="col-lg-6">
+                <div class="project-image">
+                  <img src="imagen/eduquera.jpg" alt="Eduquera Psicoterapias" class="img-fluid">
+                </div>
               </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="project-info">
-                <div class="company-badge">Google Apps Script, ETL & Automatización</div>
-                <h3>Eduquera Psicoterapias</h3>
-                <div class="project-type">Plataforma Educativa y Gestión de Contenidos</div>
-                <p class="project-description">
-                  Sistema integral de gestión educativa desarrollado con Google Apps Script, integrando flujos ETL de múltiples fuentes. La plataforma automatiza la organización de materiales educativos y gestión de usuarios.
-                </p>
-                <div class="row g-2 mb-4">
-                  <div class="col-md-6">
+              <div class="col-lg-6">
+                <div class="project-info">
+                  <div class="company-badge">Google Apps Script, ETL & Automatización</div>
+                  <h3>Eduquera Psicoterapias</h3>
+                  <div class="project-type">Plataforma Educativa y Gestión de Contenidos</div>
+                  <p class="project-description">
+                    Sistema integral de gestión educativa desarrollado con Google Apps Script, integrando flujos ETL de múltiples fuentes.
+                  </p>
+                  <div class="mb-3">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Flujos ETL multi-fuente</span>
                     </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Automatización con Google Apps Script</span>
                     </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Gestión automatizada de usuarios</span>
                     </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Email marketing automatizado</span>
                     </div>
                   </div>
-                </div>
-                <div class="project-stats">
-                  <div class="stat">
-                    <span class="stat-number">85%</span>
-                    <span class="stat-label">Reducción en tiempos operativos</span>
-                  </div>
-                  <div class="stat">
-                    <span class="stat-number">95%</span>
-                    <span class="stat-label">Mejora en estabilidad del sistema</span>
+                  <div class="project-stats">
+                    <div class="stat">
+                      <span class="stat-number">85%</span>
+                      <span class="stat-label">Reducción en tiempos</span>
+                    </div>
+                    <div class="stat">
+                      <span class="stat-number">95%</span>
+                      <span class="stat-label">Mejora en estabilidad</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1079,56 +1064,50 @@ function handleContact(e) {
           </div>
         </div>
 
-        <!-- Proyecto 3: Shine MKTG -->
+        <!-- Proyecto 3 -->
         <div class="portfolio-slide">
-          <div class="row align-items-center g-5">
-            <div class="col-lg-6">
-              <div class="project-image">
-                <img src="imagen/shine.PNG" alt="Shine MKTG - Dashboard" class="img-fluid rounded-3">
+          <div class="container">
+            <div class="row g-4">
+              <div class="col-lg-6">
+                <div class="project-image">
+                  <img src="imagen/shine.PNG" alt="Shine MKTG" class="img-fluid">
+                </div>
               </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="project-info">
-                <div class="company-badge">ETL, CRM & Marketing Data</div>
-                <h3>Shine MKTG</h3>
-                <div class="project-type">Gestión de Datos para Campañas de Marketing</div>
-                <p class="project-description">
-                  Proyecto centrado en asegurar la calidad y precisión de los datos en campañas de marketing. Incluyó liderazgo del proceso ETL y optimización de envíos de email marketing.
-                </p>
-                <div class="row g-2 mb-4">
-                  <div class="col-md-6">
+              <div class="col-lg-6">
+                <div class="project-info">
+                  <div class="company-badge">ETL, CRM & Marketing Data</div>
+                  <h3>Shine MKTG</h3>
+                  <div class="project-type">Gestión de Datos para Campañas de Marketing</div>
+                  <p class="project-description">
+                    Proyecto centrado en asegurar la calidad y precisión de los datos en campañas de marketing.
+                  </p>
+                  <div class="mb-3">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Limpieza de datos para campañas</span>
                     </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Gestión de bases de datos</span>
                     </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Optimización de email marketing</span>
                     </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Procesos ETL eficientes</span>
                     </div>
                   </div>
-                </div>
-                <div class="project-stats">
-                  <div class="stat">
-                    <span class="stat-number">-50%</span>
-                    <span class="stat-label">Tiempo dedicado a limpieza de datos</span>
-                  </div>
-                  <div class="stat">
-                    <span class="stat-number">+90%</span>
-                    <span class="stat-label">Precisión en información</span>
+                  <div class="project-stats">
+                    <div class="stat">
+                      <span class="stat-number">-50%</span>
+                      <span class="stat-label">Tiempo en limpieza</span>
+                    </div>
+                    <div class="stat">
+                      <span class="stat-number">+90%</span>
+                      <span class="stat-label">Precisión de datos</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1136,56 +1115,50 @@ function handleContact(e) {
           </div>
         </div>
 
-        <!-- Proyecto 4: Red Mascotera -->
+        <!-- Proyecto 4 -->
         <div class="portfolio-slide">
-          <div class="row align-items-center g-5">
-            <div class="col-lg-6">
-              <div class="project-image">
-                <img src="imagen/red.PNG" alt="Red Mascotera - Sistema" class="img-fluid rounded-3">
+          <div class="container">
+            <div class="row g-4">
+              <div class="col-lg-6">
+                <div class="project-image">
+                  <img src="imagen/red.PNG" alt="Red Mascotera" class="img-fluid">
+                </div>
               </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="project-info">
-                <div class="company-badge">Gestión de Datos & Adopciones</div>
-                <h3>Red Mascotera</h3>
-                <div class="project-type">Base de Datos para Adopciones y Refugios</div>
-                <p class="project-description">
-                  Proyecto enfocado en la gestión y mantenimiento de bases de datos de refugios, adoptantes y mascotas en tránsito. Permitió seguimiento histórico detallado de cada animal.
-                </p>
-                <div class="row g-2 mb-4">
-                  <div class="col-md-6">
+              <div class="col-lg-6">
+                <div class="project-info">
+                  <div class="company-badge">Gestión de Datos & Adopciones</div>
+                  <h3>Red Mascotera</h3>
+                  <div class="project-type">Base de Datos para Adopciones y Refugios</div>
+                  <p class="project-description">
+                    Proyecto enfocado en la gestión y mantenimiento de bases de datos de refugios, adoptantes y mascotas.
+                  </p>
+                  <div class="mb-3">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Gestión de registros de refugios</span>
                     </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Limpieza de datos consistente</span>
                     </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Seguimiento histórico</span>
                     </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Facilitación de adopciones</span>
                     </div>
                   </div>
-                </div>
-                <div class="project-stats">
-                  <div class="stat">
-                    <span class="stat-number">+80%</span>
-                    <span class="stat-label">Eficiencia en adopción</span>
-                  </div>
-                  <div class="stat">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Registros actualizados</span>
+                  <div class="project-stats">
+                    <div class="stat">
+                      <span class="stat-number">+80%</span>
+                      <span class="stat-label">Eficiencia en adopción</span>
+                    </div>
+                    <div class="stat">
+                      <span class="stat-number">100%</span>
+                      <span class="stat-label">Registros actualizados</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1193,57 +1166,50 @@ function handleContact(e) {
           </div>
         </div>
 
-        <!-- Proyecto 5: Fuddy -->
+        <!-- Proyecto 5 -->
         <div class="portfolio-slide">
-          <div class="row align-items-center g-5">
-            <div class="col-lg-6">
-              <div class="project-image">
-                <img src="imagen/fuddy.PNG" alt="Fuddy - Analytics" class="img-fluid rounded-3">
+          <div class="container">
+            <div class="row g-4">
+              <div class="col-lg-6">
+                <div class="project-image">
+                  <img src="imagen/fuddy.PNG" alt="Fuddy" class="img-fluid">
+                </div>
               </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="project-info">
-                <div class="company-badge">Análisis de Datos & BI</div>
-                <h3>Fuddy</h3>
-                <div class="project-type">Análisis de Consumo en Latinoamérica</div>
-                <p class="project-description">
-                  Proyecto centrado en análisis de datos para identificar tendencias y patrones de consumo en Latinoamérica, con especial foco en Argentina. Los informes apoyaron la planificación estratégica.
-                </p>
-                <div class="row g-2 mb-4">
-                  <div class="col-md-6">
+              <div class="col-lg-6">
+                <div class="project-info">
+                  <div class="company-badge">Análisis de Datos & BI</div>
+                  <h3>Fuddy</h3>
+                  <div class="project-type">Análisis de Consumo en Latinoamérica</div>
+                  <p class="project-description">
+                    Proyecto centrado en análisis de datos para identificar tendencias y patrones de consumo en Latinoamérica.
+                  </p>
+                  <div class="mb-3">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Tendencias de consumo</span>
                     </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Análisis regionales</span>
                     </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Informes estratégicos</span>
                     </div>
-                  </div>
-                  <div class="col-md-6">
                     <div class="feature-item">
-                      <span class="text-warning me-2 fw-bold">✓</span>
+                      <span class="text-warning fw-bold">✓</span>
                       <span>Planificación de productos</span>
                     </div>
                   </div>
-                </div>
-                <div class="project-stats">
-                  <div class="stat">
-                    <span class="stat-number">+70%</span>
-                    <span class="stat-label">Impacto en decisiones estratégicas</span>
-                  </div>
-                  <div class="stat">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Cobertura análisis regional</span>
-                  </div>
+                  <div class="project-stats">
+                    <div class="stat">
+                      <span class="stat-number">+70%</span>
+                      <span class="stat-label">Impacto en decisiones</span>
+                    </div>
+                    <div class="stat">
+                      <span class="stat-number">100%</span>
+                      <span class="stat-label">Cobertura regional</span>
+                    </div>
                 </div>
               </div>
             </div>
@@ -1509,29 +1475,6 @@ document.addEventListener('click', function(event) {
     }
   }
 });
-</script>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-  function closeMenu() {
-    // Busca el botón del menú (el "toggler")
-    const toggler = document.querySelector('.navbar-toggler');
-    
-    // Solo intenta cerrar el menú si el botón es visible (es decir, en vista móvil)
-    if (toggler.offsetParent !== null) {
-      // Busca el menú que se colapsa
-      const navMenu = document.getElementById('navbarNav');
-      // Crea una instancia del componente Collapse de Bootstrap
-      const bsCollapse = new bootstrap.Collapse(navMenu, {
-        toggle: false // importante para no abrir/cerrar al crear la instancia
-      });
-      // Oculta el menú
-      bsCollapse.hide();
-    }
-  }
 </script>
 
 </body>
