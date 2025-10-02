@@ -265,6 +265,55 @@ html {
 }
 .portfolio-slide.active {display:block !important;}
 
+/* Ajustes adicionales para trabajos en móvil */
+@media (max-width: 991px) {
+  #testimonios {padding:40px 0;}
+  .portfolio-container {
+    padding:0 15px;
+    margin-top:30px;
+  }
+  .portfolio-slide {
+    padding:30px 0;
+  }
+  .project-image {
+    margin-bottom:25px;
+  }
+  .project-image img {
+    max-height:250px;
+    width:100%;
+    object-fit:cover;
+  }
+  .project-description {
+    font-size:0.9rem;
+    line-height:1.5;
+    margin-bottom:15px;
+  }
+  .feature-item {
+    font-size:0.85rem;
+    margin-bottom:6px;
+  }
+  .project-stats {
+    margin-top:20px;
+  }
+  .stat-number {font-size:1.4rem;}
+  .stat-label {font-size:0.75rem;}
+}
+
+@media (max-width: 576px) {
+  .project-info h3 {
+    font-size:1.25rem;
+    margin-bottom:10px;
+  }
+  .project-type {
+    font-size:0.9rem;
+    margin-bottom:12px;
+  }
+  .company-badge {
+    font-size:0.7rem;
+    padding:5px 10px;
+  }
+}
+
 .project-image {
   width:100%;max-width:500px;margin:0 auto 30px;border-radius:12px;overflow:hidden;
   box-shadow:0 8px 24px rgba(13, 59, 102, 0.12);
@@ -330,11 +379,6 @@ html {
   .project-stats {flex-direction:column;gap:16px;}
 }
 
-/* Footer RESPONSIVE MEJORADO */
-.partners-footer {
-  background:url('imagen/gcp2.png') no-repeat center center;
-  background-size:cover;height:90px;width:100%;
-}
 .site-foot {background-color:#1e4a66;color:white;padding:20px 0;}
 .foot-inner {
   max-width:1200px;margin:0 auto;padding:0 20px;
@@ -511,10 +555,16 @@ html {
       </div>
     </a>
 
-    <!-- Mobile toggle button -->
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="color: white; font-size: 1.5rem;">
-      <i class="fas fa-bars"></i>
-    </button>
+
+<!-- Navigation menu -->
+<div class="collapse navbar-collapse" id="navbarNav">
+  <nav class="navbar-nav ms-auto">
+    <a class="nav-link px-3 py-2 rounded" href="#quehacemos" onclick="closeMenu()">Propuesta SDP</a>
+    <a class="nav-link px-3 py-2 rounded" href="#servicios" onclick="closeMenu()">Servicios</a>
+    <a class="nav-link px-3 py-2 rounded" href="#como-trabajamos" onclick="closeMenu()">Cómo trabajamos</a>
+    <a class="nav-link px-3 py-2 rounded" href="#testimonios" onclick="closeMenu()">Trabajos</a>
+  </nav>
+</div>
 
     <!-- Navigation menu -->
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -1384,28 +1434,7 @@ if (slides.length > 0 && dotsContainer) {
 </script>
 </main>
 
-<!-- PARTNERS FOOTER -->
-<section class="partners-footer">
-  <div class="partners-inner">
-    <p style="color: rgba(255, 255, 255, 0); font-weight: bold;">Partners oficiales</p>
-  </div>
-</section>
-
-<style>
-.partners-footer {
-  background: url('imagen/gcp2.png') no-repeat center center;
-  background-size: cover;
-  height: 64px;
-  width: 100%;
-}
-
-.partners-footer .partners-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-</style>
-
-<!-- Footer Rediseñado -->
+<!-- Footer -->
 <footer class="site-foot">
   <div class="foot-inner">
     <div class="footer-left">
@@ -1513,6 +1542,18 @@ if (slides.length > 0 && dotsContainer) {
 </script>
 
 
+<script>
+// Función para cerrar el menú móvil
+function closeMenu() {
+  const navbarCollapse = document.getElementById('navbarNav');
+  if (navbarCollapse.classList.contains('show')) {
+    const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+      toggle: false
+    });
+    bsCollapse.hide();
+  }
+}
+</script>
 
 </body>
 </html>
