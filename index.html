@@ -459,6 +459,7 @@ html {
 
 
 <!-- Header con Bootstrap -->
+<!-- Header con Bootstrap -->
 <header class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: rgba(13,59,102,0.95); box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
   <div class="container">
     <!-- Brand -->
@@ -471,21 +472,43 @@ html {
     </a>
 
     <!-- Mobile toggle button -->
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="color: white; font-size: 1.5rem;">
-      <i class="fas fa-bars"></i>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- Navigation menu -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <nav class="navbar-nav ms-auto">
-        <a class="nav-link px-3 py-2 rounded" href="#quehacemos" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Propuesta SDP</a>
-        <a class="nav-link px-3 py-2 rounded" href="#servicios" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Servicios</a>
-        <a class="nav-link px-3 py-2 rounded" href="#como-trabajamos" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Cómo trabajamos</a>
-        <a class="nav-link px-3 py-2 rounded" href="#testimonios" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Trabajos</a>
+        <a class="nav-link px-3 py-2 rounded" href="#quehacemos" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Propuesta SDP</a>
+        <a class="nav-link px-3 py-2 rounded" href="#servicios" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Servicios</a>
+        <a class="nav-link px-3 py-2 rounded" href="#como-trabajamos" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Cómo trabajamos</a>
+        <a class="nav-link px-3 py-2 rounded" href="#testimonios" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show">Trabajos</a>
       </nav>
     </div>
   </div>
 </header>
+
+<style>
+/* Estilos para el menú */
+.navbar-nav .nav-link {
+  color: rgba(255,255,255,0.95) !important;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: rgba(13,59,102,0.98);
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+  }
+}
+</style>
 
 <!-- Hero Section con Bootstrap -->
 <section class="hero position-relative text-white overflow-hidden" style="padding: 82px 0 70px; background-image: url('assets/hero-bg.jpg'); background-size: cover; background-position: center;">
@@ -1482,7 +1505,30 @@ if (slides.length > 0 && dotsContainer) {
   }, 8000);
 </script>
 
+<script>
+// Función para cerrar el menú móvil al hacer clic en un enlace
+function closeMenu() {
+  const navbarCollapse = document.getElementById('navbarNav');
+  if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+    const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+      toggle: false
+    });
+    bsCollapse.hide();
+  }
+}
 
+// También cerrar el menú al hacer clic fuera de él
+document.addEventListener('click', function(event) {
+  const navbar = document.getElementById('navbarNav');
+  const toggler = document.querySelector('.navbar-toggler');
+  
+  if (navbar && navbar.classList.contains('show')) {
+    if (!navbar.contains(event.target) && !toggler.contains(event.target)) {
+      closeMenu();
+    }
+  }
+});
+</script>
 
 </body>
 </html>
