@@ -9,248 +9,92 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
   <!-- EmailJS -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>
-  (function(){
-    emailjs.init("o3otnS-8gDPc6gKr1");
-  })();
-</script>
-
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("o3otnS-8gDPc6gKr1");
+    })();
+  </script>
 
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    /* Normalización cross-browser */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+    html, body {
+      height: 100%;
+      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto;
+      color: #333;
+      background: #f5f5f5;
+    }
 
-html {
-  -webkit-text-size-adjust: 100%;
-  font-size: 16px; /* Tamaño base fijo */
-}
-
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  margin: 0;
-}
-
-    :root{
-      --azul: #0d3b66;
-      --naranja: #ff6b00;
-      --gris-claro: #f5f5f5;
-      --blanco: #ffffff;
-      --gris-text: #333333;
+    :root {
+      --primary: #0d3b66;
+      --accent: #ff6b00;
+      --light: #f5f5f5;
+      --white: #ffffff;
+      --text: #333333;
       --muted: #6b7280;
-      --radius: 12px;
-      --container: 1100px;
-      --azul-footer: #0d3b66;
-      --footer-overlap: 28px;
-      --footer-height: 72px;
+      --naranja: #ff6b00;
     }
-/* Personalización de la barra de scroll */
 
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f5f5f5;
-  border-radius: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #0d3b66 0%, #1e4a66 100%);
-  border-radius: 6px;
-  border: 2px solid #f5f5f5;
+    /* Scroll bar */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--light);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--primary) 0%, #1e4a66 100%);
+      border-radius: 6px;
+      border: 2px solid var(--light);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, var(--accent) 0%, #ff8533 100%);
+    }
+    .scroll-to-top-btn {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 999;
+  display: none;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #ff6b00 0%, #ff8533 100%);
+.scroll-to-top-btn:hover {
+  background: #ff8533;
   transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(255, 107, 0, 0.3);
 }
 
-::-webkit-scrollbar-thumb:active {
-  background: #0d3b66;
+.scroll-to-top-btn.show {
+  display: flex;
 }
-
-/* Para navegadores Firefox */
-html {
-  scrollbar-width: thin;
-  scrollbar-color: #0d3b66 #f5f5f5;
-}
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:'Poppins',system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-      color:var(--gris-text);
-      background:var(--gris-claro);
-      line-height:1.5;
-    }
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:var(--container);margin:0 auto;padding:0 20px;}
-
     /* Header */
-    header.site-header{
-      background:rgba(13,59,102,0.95);
-      color:var(--blanco);
-      position:sticky;top:0;z-index:80;
-      box-shadow:0 2px 8px rgba(0,0,0,0.08);
+    header {
+      background: rgba(13, 59, 102, 0.95);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 20px;max-width:var(--container);margin:0 auto;}
-    .brand{display:flex;align-items:center;gap:12px;}
-    .brand img{width:44px;height:44px;object-fit:contain;border-radius:8px;background:var(--blanco);padding:4px;}
-    .brand h3{margin:0;font-size:1.05rem;font-weight:700;}
-    nav.menu{display:flex;gap:18px;align-items:center;}
-    nav.menu a{color:rgba(255,255,255,0.95);font-weight:600;padding:8px;border-radius:6px;transition:background 0.3s ease;}
-    nav.menu a:hover{background:rgba(255,255,255,0.06)}
-
-    /* Mobile menu */
-    .mobile-menu-toggle{display:none;background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;}
-    @media (max-width: 768px) {
-      .mobile-menu-toggle{display:block;}
-      nav.menu{display:none;position:absolute;top:100%;left:0;right:0;background:var(--azul);flex-direction:column;padding:20px;gap:10px;}
-      nav.menu.active{display:flex;}
-      nav.menu a{display:block;padding:12px;width:100%;}
-    }
-
-    /* Hero mejorado */
-    .hero{
-      padding:82px 0 70px;
-      background-image:url('assets/hero-bg.jpg');
-      background-size:cover;background-position:center;
-      position:relative;color:var(--blanco);
-    }
-    .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,59,102,0.75),rgba(0,0,0,0.15));z-index:0;}
-    .hero-inner{position:relative;z-index:2;display:flex;align-items:flex-start;gap:40px;justify-content:space-between;flex-wrap:wrap;padding:0 20px;}
-    .hero-left{flex:1;max-width:600px;}
-    .eyebrow{display:inline-block;background:rgba(255,255,255,0.1);padding:6px 10px;border-radius:999px;font-weight:600;font-size:0.85rem;margin-bottom:18px;}
-    .hero h1{margin:0 0 18px;font-size:2.2rem;font-weight:700;line-height:1.2;}
-    .hero p.lead{margin:0 0 22px;font-size:1.05rem;color:rgba(255,255,255,0.9);}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
-    .btn-primary{background:var(--naranja);color:var(--blanco);padding:12px 20px;border-radius:10px;font-weight:700;border:none;cursor:pointer;transition:all 0.3s ease;}
-    .btn-primary:hover{background:#ff8533;transform:translateY(-1px);}
-    .btn-outline{background:transparent;color:var(--blanco);border:2px solid rgba(255,255,255,0.18);padding:10px 18px;border-radius:10px;transition:all 0.3s ease;}
-    .btn-outline:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.4);}
-    
-    .trust{margin-top:18px;display:flex;gap:12px;align-items:center;}
-    .stars{color:#FFD166;font-size:1.15rem;}
-    .trust small{color:rgba(255,255,255,0.9);font-weight:600;}
-    
-    /* Hero Form mejorado */
-    .hero-form{
-      flex:0 0 380px;
-      background:rgba(255, 255, 255, 0.95);
-      backdrop-filter:blur(10px);
-      padding:24px;
-      border-radius:12px;
-      box-shadow:0 8px 32px rgba(0, 0, 0, 0.1);
-      border:1px solid rgba(255, 255, 255, 0.2);
-    }
-    .hero-form h3{margin:0 0 20px;color:var(--azul);font-size:1.25rem;font-weight:600;}
-    .hero-form .form-group{margin-bottom:16px;}
-    .hero-form input, .hero-form textarea, .hero-form select{
-      width:100%;padding:12px;border:1px solid #ddd;border-radius:6px;font-size:14px;
-      transition:border-color 0.3s ease, box-shadow 0.3s ease;font-family:inherit;
-    }
-    .hero-form input:focus, .hero-form textarea:focus, .hero-form select:focus{
-      outline:none;border-color:var(--azul);box-shadow:0 0 0 2px rgba(13, 59, 102, 0.1);
-    }
-    .hero-form button[type="submit"]{
-      width:100%;background:var(--naranja);color:white;padding:12px;border:none;
-      border-radius:6px;font-size:16px;font-weight:500;cursor:pointer;
-      transition:background-color 0.3s ease;
-    }
-    .hero-form button[type="submit"]:hover{background:#ff8533;}
-    
-    /* Audio toggle mejorado */
-    .audio-toggle{
-      background:transparent;border:2px solid white;color:white;width:44px;height:44px;
-      border-radius:50%;display:flex;align-items:center;justify-content:center;
-      cursor:pointer;transition:all 0.3s ease;font-size:18px;
-    }
-    .audio-toggle:hover{background:rgba(255,255,255,0.1);transform:scale(1.05);}
-    .audio-toggle.muted{opacity:0.6;}
-
-    /* Sección Nuestra Propuesta */
-    #quehacemos {
-      position:relative;overflow:hidden;width:100%;min-height:500px;
-      display:flex;align-items:center;justify-content:center;margin-top:-50px;padding:80px 0;
-    }
-    #quehacemos .bg-overlay {
-      position:absolute;inset:0;
-      background:linear-gradient(180deg, 
-        rgba(245,245,245,0) 0%,rgba(245,245,245,0.3) 15%,rgba(245,245,245,0.7) 35%,
-        rgba(255,255,255,0.85) 60%,rgba(255,255,255,0.95) 80%,rgba(255,255,255,1) 100%),
-        url('imagen/ch.jpg');
-      background-size:cover;background-position:center;z-index:0;
-    }
-    #quehacemos .content {
-      position:relative;z-index:1;text-align:center;max-width:var(--container);
-      padding:60px 20px;background:rgba(255, 255, 255, 0.9);border-radius:16px;
-      box-shadow:0 10px 30px rgba(0,0,0,0.1);backdrop-filter:blur(10px);
-    }
-    #quehacemos .content h2 {
-      color:var(--azul);font-size:2rem;font-weight:700;margin-bottom:20px;
-      text-shadow:0 2px 4px rgba(255,255,255,0.8);
-    }
-    #quehacemos .content p {
-      color:var(--gris-text);font-size:1.2rem;font-weight:500;margin:0 auto;
-      max-width:800px;text-shadow:0 1px 2px rgba(255,255,255,0.8);
-    }
-
-    /* Secciones generales */
-    main{padding:50px 0 80px;}
-    section.block{padding:54px 0;}
-    .section-title{text-align:center;margin-bottom:28px;}
-    .section-title h2{color:var(--azul);font-size:1.8rem;margin:0;font-weight:700;}
-    .section-title p{margin:8px auto 0;color:var(--muted);max-width:760px;font-size:1.1rem;}
-
-    /* Servicios mejorados */
-    .servicios-container {
-      display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-      gap:24px;margin-top:40px;
-    }
-    .card{
-      background:var(--blanco);border-radius:12px;padding:26px;
-      box-shadow:0 8px 24px rgba(13,59,102,0.04);
-      transition:transform 0.3s ease, box-shadow 0.3s ease;
-      border:1px solid rgba(13,59,102,0.05);
-    }
-    .card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(13,59,102,0.08);}
-    .card h3{margin:0 0 12px;color:var(--azul);font-size:1.1rem;font-weight:600;}
-    .card p{margin:0;color:var(--muted);line-height:1.6;font-size:0.95rem;}
-
-    /* Cómo trabajamos - Bootstrap integrado */
-    #como-trabajamos{background:linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);padding:80px 0;}
-    .process-card{transition:transform 0.3s ease, box-shadow 0.3s ease;}
-    .process-card:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,0.15) !important;}
-    .card-icon{
-      background:linear-gradient(135deg, #0d3b66 0%, #1e4a66 100%);
-      width:70px;height:70px;border-radius:50%;display:flex;align-items:center;
-      justify-content:center;margin:0 auto 20px;color:white;font-size:24px;
-    }
-    .step-number{
-      background:linear-gradient(135deg, #ff6b00 0%, #ff8533 100%);color:white;
-      width:35px;height:35px;border-radius:50%;display:flex;align-items:center;
-      justify-content:center;font-weight:bold;position:absolute;top:-15px;right:15px;font-size:14px;
-    }
-    .section-title-trabajamos{
-      background:linear-gradient(135deg, #0d3b66 0%, #1e4a66 100%);
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-      background-clip:text;font-weight:700;
-    }
-    .card-title-trabajamos{color:#0d3b66;font-weight:600;margin-bottom:15px;}
-    .card-text-trabajamos{color:#6b7280;line-height:1.6;}
-
-    /* Portfolio - manteniendo la funcionalidad original */
     #testimonios {padding:60px 0;background:var(--blanco);overflow:hidden;}
     #testimonios .section-title h2 {color:var(--azul);font-size:2.2rem;margin:0 0 15px;font-weight:700;}
     #testimonios .section-title p {margin:0;color:var(--muted);font-size:1.1rem;max-width:600px;margin:0 auto;}
@@ -292,86 +136,708 @@ html {
     .stat {text-align:center;}
     .stat-number {display:block;font-size:1.6rem;font-weight:700;color:var(--naranja);margin-bottom:4px;}
     .stat-label {font-size:0.85rem;color:var(--muted);font-weight:500;}
-    
+
+    .navbar-brand h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.95) !important;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 6px;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--primary) 0%, #1e4a66 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="1200" height="600" fill="url(%23grid)"/></svg>');
+      opacity: 0.1;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 30px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 50px;
+      line-height: 1.6;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+
+    .btn-hero {
+      padding: 15px 40px;
+      border-radius: 50px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .btn-primary-hero {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 8px 25px rgba(255, 107, 0, 0.3);
+    }
+
+    .btn-primary-hero:hover {
+      background: #ff8533;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(255, 107, 0, 0.4);
+    }
+
+    .btn-secondary-hero {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-secondary-hero:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.6);
+      transform: translateY(-3px);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+
+    .scroll-indicator:hover {
+      color: white;
+    }
+
+    /* Main Content */
+    main {
+      background: white;
+    }
+
+    section {
+      padding: 100px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .section-title p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Proyectos */
+    .portfolio-slide {
+      display: none;
+    }
+
+    .portfolio-slide.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .project-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+      margin: 60px 0;
+    }
+
+    .project-image {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-content h3 {
+      font-size: 2.2rem;
+      color: var(--primary);
+      font-weight: 700;
+      margin: 20px 0;
+    }
+
+    .project-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent), #ff8533);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 15px;
+    }
+
+    .project-type {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 15px;
+    }
+
+    .project-description {
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 25px;
+      font-size: 1rem;
+    }
+
+    .project-features {
+      list-style: none;
+      margin: 25px 0;
+    }
+
+    .project-features li {
+      padding: 8px 0;
+      color: var(--text);
+      position: relative;
+      padding-left: 25px;
+    }
+
+    .project-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
     .portfolio-nav {
-      position:absolute;top:325px;transform:translateY(-50%);background:var(--azul);
-      color:white;border:none;width:48px;height:48px;border-radius:50%;font-size:1.2rem;
-      cursor:pointer;transition:all 0.3s ease;z-index:10;display:flex;align-items:center;justify-content:center;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 60px;
     }
-    .portfolio-nav:hover {background:var(--naranja);transform:translateY(-50%) scale(1.05);}
-    .portfolio-nav.prev {left:24px;}
-    .portfolio-nav.next {right:24px;}
-    
-    .portfolio-dots {display:flex;justify-content:center;gap:10px;margin-top:30px;}
-    .dot {width:10px;height:10px;border-radius:50%;background:#ddd;cursor:pointer;transition:all 0.3s ease;}
-    .dot.active {background:var(--naranja);transform:scale(1.2);}
+
+    .nav-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .nav-btn:hover {
+      background: var(--accent);
+      transform: scale(1.1);
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ddd;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: var(--accent);
+      transform: scale(1.3);
+    }
+
+    /* Servicios */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      border: 1px solid #f0f0f0;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--primary), #1e4a66);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .service-card h3 {
+      font-size: 1.3rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* CTA Buttons */
+    .cta-section {
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .cta-button {
+      background: var(--accent);
+      color: white;
+      padding: 18px 50px;
+      border-radius: 50px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+      box-shadow: 0 8px 25px rgba(255, 107, 0, 0.3);
+    }
+
+    .cta-button:hover {
+      background: #ff8533;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(255, 107, 0, 0.4);
+    }
+
+    /* Process */
+    .process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+    .process-card {
+      background: white;
+      padding: 35px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .process-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .step-number {
+      position: absolute;
+      top: -15px;
+      right: 20px;
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, var(--accent), #ff8533);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+
+    .process-icon {
+      font-size: 40px;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .process-card h3 {
+      font-size: 1.2rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .process-card p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* Contact Form */
+    .contact-section {
+      background: linear-gradient(135deg, var(--light) 0%, white 100%);
+    }
+
+    .form-container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: white;
+      padding: 50px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(13, 59, 102, 0.1);
+    }
+
+    .form-group button {
+      width: 100%;
+      padding: 16px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .form-group button:hover {
+      background: #ff8533;
+    }
+
+    .alert {
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      display: none;
+    }
+
+    .alert.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .alert.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    /* Footer - Grande y profesional */
+    footer {
+      background: linear-gradient(135deg, var(--primary) 0%, #1e4a66 100%);
+      color: white;
+      padding: 100px 20px 30px;
+      margin-top: 100px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+
+    .footer-col h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: #FFD166;
+    }
+
+    .footer-col p {
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 15px;
+    }
+
+    .footer-col a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-col a:hover {
+      color: #FFD166;
+      transform: translateX(5px);
+    }
+
+    .footer-col a i {
+      width: 20px;
+      text-align: center;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      width: 45px;
+      height: 45px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+.scroll-top-link {
+  position: fixed;
+  right: 25px;
+  bottom: 90px; /* ajustá según la altura del footer */
+  background-color: #0d3b66;
+  color: white;
+  font-size: 1.3rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: none; /* Oculto por defecto */
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  z-index: 9999;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.scroll-top-link:hover {
+  background-color: #ff6b00;
+  transform: scale(1.1);
+}
+
+.scroll-top-link.show {
+  display: flex;
+}
 
 
-    .site-foot {background-color:#1e4a66;color:white;padding:20px 0;overflow:visible;}
-    .foot-inner {
-      max-width:1200px;margin:0 auto;padding:0 20px;display:flex;
-      justify-content:space-between;align-items:center;flex-wrap:wrap;position:relative;
+    .footer-divider {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 50px 0;
+      padding-top: 40px;
     }
-    .footer-left {display:flex;align-items:center;flex:1;}
-    .footer-center {position:absolute;left:50%;transform:translateX(-50%);}
-    .company-name {font-size:16px;font-weight:400;color:white;}
-    .sdp-logo {font-size:32px;font-weight:bold;color:white;letter-spacing:2px;}
-    .footer-right {display:flex;align-items:center;flex:1;justify-content:flex-end;gap:18px;}
-    
-    .scroll-to-top {
-      display:flex;align-items:center;justify-content:center;width:40px;height:40px;
-      background-color:#2c5f7a;border:none;border-radius:4px 4px 0 0;cursor:pointer;
-      transition:all 0.3s ease;text-decoration:none;color:white;font-size:18px;
-      font-weight:bold;position:relative;top:15px;
-    }
-    .scroll-to-top:hover {background-color:#1e4358;transform:translateY(-3px);}
-    .scroll-to-top::before {content:"^";font-size:20px;}
-    
-    .linkedin-icon {
-      display:inline-flex;align-items:center;justify-content:center;text-decoration:none;
-      transition:opacity 0.3s ease;font-weight:bold;font-size:16px;color:white;
-    }
-    .linkedin-icon:hover {opacity:0.8;transform:translateY(-1px);}
 
-    /* Alertas del formulario */
-    .form-alert{
-      margin-top:12px;padding:10px;border-radius:6px;font-size:14px;
-      display:none;transition:all 0.3s ease;
+    .footer-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    .form-alert.success{background:#d4edda;color:#155724;border:1px solid #c3e6cb;}
-    .form-alert.error{background:#f8d7da;color:#721c24;border:1px solid #f5c6cb;}
 
-    /* Responsive mejorado */
+    .footer-bottom p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    .footer-stats {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 15px;
+    }
+
+
+
+    /* Responsive */
     @media (max-width: 768px) {
-      .hero h1{font-size:1.8rem;}
-      .hero-inner{flex-direction:column;gap:30px;}
-      .hero-form{flex:none;width:100%;max-width:none;}
-      
-      .servicios-container{grid-template-columns:1fr;gap:20px;}
-      .card-icon{width:60px;height:60px;font-size:20px;}
-      
-      .portfolio-container{height:600px;padding:0 20px;}
-      .portfolio-slide.active{flex-direction:column;gap:30px;padding:40px 20px;}
-      .portfolio-nav{display:none;}
-      .project-image{max-width:100%;order:1;}
-      .project-image img{height:250px;}
-      .project-details{text-align:center;order:2;}
-      .project-features{grid-template-columns:1fr;}
-      
-      .foot-inner{flex-direction:column;gap:15px;text-align:center;}
-      .footer-left, .footer-right{flex:none;justify-content:center;}
-      .footer-center{position:static;transform:none;}
-    }
+      section {
+        padding: 60px 20px;
+      }
 
-    @media (max-width: 640px) {
-      .portfolio-container{height:550px;}
-      .project-details h3{font-size:1.3rem;}
+      .hero h1 {
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        margin-bottom: 40px;
+      }
+
+      .project-row {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .project-image img {
+        height: 300px;
+      }
+
+      .project-content h3 {
+        font-size: 1.8rem;
+      }
+
+      .form-container {
+        padding: 30px;
+      }
+
+      .footer-content {
+        gap: 40px;
+      }
+
+      .footer-bottom {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer-stats {
+        justify-content: center;
+      }
     }
   </style>
 </head>
 <body>
-
-
 
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -395,22 +861,21 @@ html {
              1.135.418.477.152.91.13 1.252.079.382-.058 
              1.168-.477 1.333-.94.164-.464.164-.861.115-.94-.048-.079-.178-.127-.375-.226"/>
   </svg>
-  <!-- Tooltip -->
   <span class="whatsapp-tooltip">Contacto vía WhatsApp</span>
 </a>
 
 <!-- Estilos -->
 <style>
   #whatsappBtn {
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity 0.6s ease, transform 0.6s ease; /* más lenta */
   }
   #whatsappBtn.hidden {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(25px);
     pointer-events: none;
   }
 
-  /* Tooltip personalizado */
+  /* Tooltip */
   .whatsapp-btn {
     position: relative;
     overflow: visible;
@@ -438,519 +903,85 @@ html {
 <!-- Script -->
 <script>
   const whatsappBtn = document.getElementById("whatsappBtn");
+  let hideTimeout;
+  let showTimeout;
 
-  // Mostrar solo al inicio
   whatsappBtn.classList.remove("hidden");
 
   window.addEventListener("scroll", () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    if (scrollTop > 0) {
-      // Scrolleando hacia abajo -> ocultar
-      whatsappBtn.classList.add("hidden");
+    if (scrollTop > 200) { // espera que el usuario scrollee un poco
+      clearTimeout(showTimeout);
+      hideTimeout = setTimeout(() => {
+        whatsappBtn.classList.add("hidden");
+      }, 400); // tarda 0.4s en desaparecer después del scroll
     } else {
-      // Al volver al inicio -> mostrar
-      whatsappBtn.classList.remove("hidden");
+      clearTimeout(hideTimeout);
+      showTimeout = setTimeout(() => {
+        whatsappBtn.classList.remove("hidden");
+      }, 300); // tarda 0.3s en volver a aparecer
     }
   });
 </script>
 
 
 
-
-<!-- Header con Bootstrap -->
-<header class="navbar navbar-expand-lg navbar-dark sticky-top" style="background: rgba(13,59,102,0.95); box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-  <div class="container">
-    <!-- Brand -->
-    <a class="navbar-brand d-flex align-items-center" href="#" style="gap: 12px;">
-      <img src="" alt="SDP logo" class="rounded" style="width: 44px; height: 44px; object-fit: contain; background: white; padding: 4px;" onerror="this.style.display='none'">
-      <div>
-        <h3 class="mb-0" style="font-size: 1.05rem; font-weight: 700; color: white;">SDP</h3>
-        <small class="d-block" style="font-weight: 600; color: rgba(255,255,255,0.9); font-size: 0.8rem;">Solución Digital Pyme</small>
+<!-- Header -->
+<header>
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <h3>SDP</h3>
+          <small style="color: rgba(255,255,255,0.9); font-size: 0.75rem;">Solución Digital Pyme</small>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <nav class="navbar-nav ms-auto">
+            <a class="nav-link" href="#proyectos">Proyectos</a>
+            <a class="nav-link" href="#servicios">Servicios</a>
+            <a class="nav-link" href="#proceso">Cómo trabajamos</a>
+            <a class="nav-link" href="#contacto">Contacto</a>
+          </nav>
+        </div>
       </div>
-    </a>
-
-    <!-- Mobile toggle button -->
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="color: white; font-size: 1.5rem;">
-      <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Navigation menu -->
-
-<div class="collapse navbar-collapse" id="navbarNav">
-  <nav class="navbar-nav ms-auto">
-    <a class="nav-link px-3 py-2 rounded" href="#quehacemos" onclick="closeMenu()" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Propuesta SDP</a>
-    <a class="nav-link px-3 py-2 rounded" href="#servicios" onclick="closeMenu()" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Servicios</a>
-    <a class="nav-link px-3 py-2 rounded" href="#como-trabajamos" onclick="closeMenu()" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Cómo trabajamos</a>
-    <a class="nav-link px-3 py-2 rounded" href="#testimonios" onclick="closeMenu()" style="color: rgba(255,255,255,0.95); font-weight: 600; transition: background 0.3s ease;">Trabajos</a>
-  </nav>
-</div>
+    </nav>
   </div>
 </header>
 
-<!-- Hero Section con Bootstrap -->
-<section class="hero position-relative text-white overflow-hidden" style="padding: 82px 0 70px; background-image: url('assets/hero-bg.jpg'); background-size: cover; background-position: center;">
-  <!-- Overlay -->
-  <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(180deg,rgba(13,59,102,0.75),rgba(0,0,0,0.15)); z-index: 0;"></div>
-  
-  <div class="container position-relative" style="z-index: 2;">
-    <div class="row align-items-start g-4 g-lg-5">
-      <!-- Hero Left Content -->
-      <div class="col-lg-7 col-xl-6">
-        <div class="hero-content">
-          <div class="eyebrow d-inline-block mb-3 px-3 py-2 rounded-pill" style="background: rgba(255,255,255,0.1); font-weight: 600; font-size: 0.85rem;">
-            Soluciones para PyMEs
-          </div>
-          <h1 class="display-4 fw-bold mb-4" style="line-height: 1.2;">
-            Cuando tus datos están dispersos y tus procesos desordenados, las oportunidades se pierden.
-          </h1>
-          <p class="lead mb-4" style="color: rgba(255,255,255,0.9); font-size: 1.05rem;">
-            Con SDP, empezás a ganar decisiones. Organizamos datos, automatizamos procesos e integramos sistemas para que tu PyME aproveche cada oportunidad.
-          </p>
-          
-          <!-- Hero Actions -->
-          <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
-            <a href="#servicios" class="btn btn-outline-light px-4 py-3 rounded-3 fw-bold" style="border: 2px solid rgba(255,255,255,0.18); transition: all 0.3s ease;">
-              Ver servicios
-            </a>
-            <button class="btn btn-outline-light rounded-circle d-flex align-items-center justify-content-center audio-toggle" id="audioToggle" title="Activar/Desactivar audio" style="width: 44px; height: 44px; border: 2px solid white; transition: all 0.3s ease; font-size: 18px;">
-              <i class="fas fa-volume-mute"></i>
-            </button>
-          </div>
-          
-          <!-- Trust indicators -->
-          <div class="trust d-flex align-items-center gap-3">
-            <div class="stars" style="color: #FFD166; font-size: 1.15rem;">★ ★ ★ ★ ★</div>
-            <small style="color: rgba(255,255,255,0.9); font-weight: 600;">Calificación 5.0 en Workana</small>
-          </div>
-        </div>
-      </div>
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Cuando tus datos están dispersos y tus procesos desordenados, las oportunidades se pierden.</h1>
+    <p>Con SDP, empezás a ganar decisiones. Organizamos datos, automatizamos procesos e integramos sistemas para que tu PyME aproveche cada oportunidad.</p>
+    
+    <div class="hero-buttons">
+      <a href="#proyectos" class="btn-hero btn-primary-hero">Ver nuestros trabajos</a>
+      <a href="#contacto" class="btn-hero btn-secondary-hero">Contactanos</a>
+    </div>
 
-      <!-- Hero Form -->
-      <div class="col-lg-5 col-xl-5 ms-auto">
-        <div class="hero-form p-4 rounded-3" style="background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.2);">
-          <h3 class="mb-4" style="color: #0d3b66; font-size: 1.25rem; font-weight: 600;">Contactanos via email</h3>
-          <form id="contactForm" onsubmit="handleContact(event)">
-            <div class="mb-3">
-              <input type="text" id="name" name="name" class="form-control py-3" placeholder="Nombre" required style="border: 1px solid #ddd; border-radius: 6px; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
-            </div>
-            <div class="mb-3">
-              <input type="text" id="company" name="company" class="form-control py-3" placeholder="Nombre de empresa" required style="border: 1px solid #ddd; border-radius: 6px; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
-            </div>
-            <div class="mb-3">
-              <select id="country" name="country" class="form-select py-3" required style="border: 1px solid #ddd; border-radius: 6px; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
-                <option value="">Selección de país</option>
-                <option value="AR">Argentina</option>
-                <option value="CL">Chile</option>
-                <option value="UY">Uruguay</option>
-                <option value="PE">Perú</option>
-                <option value="CO">Colombia</option>
-                <option value="MX">México</option>
-                <option value="OTHER">Otro</option>
-              </select>
-            </div>
-            <div class="mb-3">
-              <input type="email" id="email" name="email" class="form-control py-3" placeholder="Correo electrónico" required style="border: 1px solid #ddd; border-radius: 6px; transition: border-color 0.3s ease, box-shadow 0.3s ease;">
-            </div>
-            <div class="mb-3">
-              <textarea id="message" name="message" rows="4" class="form-control" placeholder="Contanos en qué podemos ayudarte" required style="border: 1px solid #ddd; border-radius: 6px; transition: border-color 0.3s ease, box-shadow 0.3s ease; resize: vertical;"></textarea>
-            </div>
-            <button type="submit" class="btn w-100 py-3 rounded-3 fw-medium" style="background: #ff6b00; color: white; border: none; font-size: 16px; transition: background-color 0.3s ease;">
-              Enviar mensaje
-            </button>
-            <div id="formAlert" class="form-alert mt-3" style="display: none; padding: 10px; border-radius: 6px; font-size: 14px; transition: all 0.3s ease;"></div>
-          </form>
-        </div>
-      </div>
+    <div style="margin-top: 30px; display: flex; justify-content: center; align-items: center; gap: 15px;">
+      <div style="color: #FFD166; font-size: 1.3rem;">★ ★ ★ ★ ★</div>
+      <small style="color: rgba(255,255,255,0.95); font-weight: 600;">Calificación 5.0 en Workana</small>
     </div>
   </div>
 
-  <!-- Audio element -->
-  <audio id="heroAudio" loop autoplay muted>
-    <source src="imagen/audioSDP.mp3" type="audio/mpeg">
-  </audio>
+  <div class="scroll-indicator" onclick="document.getElementById('proyectos').scrollIntoView({behavior: 'smooth'})">
+    <small style="font-weight: 500; margin-bottom: 10px;">Descubrí más</small>
+    <i class="fas fa-chevron-down"></i>
+  </div>
 </section>
 
-<style>
-/* Hover effects para navegación */
-.navbar-nav .nav-link:hover {
-  background: rgba(255,255,255,0.06) !important;
-}
-
-/* Botones hover effects */
-.btn-outline-light:hover {
-  background: rgba(255,255,255,0.1) !important;
-  border-color: rgba(255,255,255,0.4) !important;
-  transform: translateY(-1px);
-}
-
-.audio-toggle:hover {
-  background: rgba(255,255,255,0.1) !important;
-  transform: scale(1.05);
-}
-
-.audio-toggle.muted {
-  opacity: 0.6;
-}
-
-/* Formulario focus states */
-.hero-form .form-control:focus,
-.hero-form .form-select:focus {
-  outline: none !important;
-  border-color: #0d3b66 !important;
-  box-shadow: 0 0 0 2px rgba(13, 59, 102, 0.1) !important;
-}
-
-.hero-form button[type="submit"]:hover {
-  background: #ff8533 !important;
-}
-
-/* Form alerts */
-.form-alert.success {
-  background: #d4edda !important;
-  color: #155724 !important;
-  border: 1px solid #c3e6cb !important;
-}
-
-.form-alert.error {
-  background: #f8d7da !important;
-  color: #721c24 !important;
-  border: 1px solid #f5c6cb !important;
-}
-
-/* Mobile responsive adjustments */
-@media (max-width: 768px) {
-  .hero {
-    padding: 60px 0 50px !important;
-  }
-  
-  .hero h1 {
-    font-size: 2rem !important;
-  }
-  
-  .hero-form {
-    margin-top: 2rem;
-  }
-  
-  .navbar-brand h3 {
-    font-size: 0.95rem !important;
-  }
-  
-  .navbar-brand small {
-    font-size: 0.75rem !important;
-  }
-}
-
-@media (max-width: 576px) {
-  .display-4 {
-    font-size: 1.75rem !important;
-  }
-  
-  .lead {
-    font-size: 1rem !important;
-  }
-}
-</style>
-
-<script>
-
-// Audio toggle functionality
-
-const audioToggle = document.getElementById('audioToggle');
-const heroAudio = document.getElementById('heroAudio');
-
-if (audioToggle && heroAudio) {
-  audioToggle.addEventListener('click', () => {
-    if (heroAudio.paused) {
-      // Reproducir y desmutear
-      heroAudio.play().then(() => {
-        heroAudio.muted = false;
-        audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
-        audioToggle.classList.remove('muted');
-      }).catch(err => {
-        console.log('Error al reproducir audio:', err);
-        heroAudio.muted = false;
-        audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
-        audioToggle.classList.remove('muted');
-      });
-    } else {
-      // Pausar el audio completamente
-      heroAudio.pause();
-      heroAudio.muted = true;
-      audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
-      audioToggle.classList.add('muted');
-    }
-  });
-}
-
-// Contact form functionality
-function handleContact(e) {
-  e.preventDefault();
-  
-  const submitButton = e.target.querySelector('button[type="submit"]');
-  const alertBox = document.getElementById('formAlert');
-  const originalButtonText = submitButton.textContent;
-  
-  submitButton.disabled = true;
-  submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
-  
-  const formData = new FormData();
-  formData.append('name', document.getElementById('name').value.trim());
-  formData.append('company', document.getElementById('company').value.trim());
-  formData.append('country', document.getElementById('country').value);
-  formData.append('email', document.getElementById('email').value.trim());
-  formData.append('message', document.getElementById('message').value.trim());
-  
-  // REEMPLAZA ESTA URL CON LA QUE TE DIO GOOGLE EN EL PASO 2
-  fetch('https://script.google.com/macros/s/AKfycbxcKN8arfKz8aZB0G1WQGsmwyk54zvOwDnoyRNCk90FQd99hWUN00SOYw7pgQC2zdGg/exec', {
-    method: 'POST',
-    mode: 'no-cors', // Importante para Google Apps Script
-    body: formData
-  })
-  .then(() => {
-    alertBox.className = 'form-alert success';
-    alertBox.style.display = 'block';
-    alertBox.innerHTML = '<i class="fas fa-check-circle me-2"></i>¡Mensaje enviado correctamente! Te contactaremos pronto.';
-    document.getElementById('contactForm').reset();
-    
-    setTimeout(() => {
-      alertBox.style.display = 'none';
-    }, 5000);
-  })
-  .catch(error => {
-    console.log('Error:', error);
-    alertBox.className = 'form-alert error';
-    alertBox.style.display = 'block';
-    alertBox.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i>Error al enviar el mensaje. Por favor intenta nuevamente.';
-  })
-  .finally(() => {
-    submitButton.disabled = false;
-    submitButton.textContent = originalButtonText;
-  });
-}
-</script>
-
+<!-- Main Content -->
 <main>
-  
-<section id="quehacemos" class="position-relative overflow-hidden w-100 d-flex align-items-center justify-content-center" style="min-height: 500px; margin-top: -50px; padding: 80px 0;">
-  <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(180deg, rgba(245,245,245,0) 0%, rgba(245,245,245,0.3) 15%, rgba(245,245,245,0.7) 35%, rgba(255,255,255,0.85) 60%, rgba(255,255,255,0.95) 80%, rgba(255,255,255,1) 100%), url('imagen/ch.jpg'); background-size: cover; background-position: center; z-index: 0;"></div>
-  
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-10 mx-auto">
-        <div class="position-relative text-center p-5 rounded-4 shadow" style="z-index: 1; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-          <h2 class="display-5 mb-4" style="color: #0d3b66; font-weight: 700; text-shadow: 0 2px 4px rgba(255,255,255,0.8);">Nuestra propuesta</h2>
-          <p class="lead mb-0" style="color: #333333; font-weight: 500; max-width: 800px; margin: 0 auto; text-shadow: 0 1px 2px rgba(255,255,255,0.8);">La transformación digital puede ser un desafío para las PyMEs con recursos limitados. 
-             En SDP acompañamos a cada pyme con un enfoque cercano y humano, ofreciendo soluciones prácticas, asesoramiento continuo y tecnología adaptada a su realidad.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section id="servicios" class="py-5">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 mx-auto text-center mb-5">
-        <h2 class="display-5 mb-3" style="background: linear-gradient(135deg, #0d3b66 0%, #1e4a66 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">Servicios</h2>
-        <p class="lead text-muted">Nos adaptamos a tus necesidades, paso a paso.</p>
-      </div>
-    </div>
-    
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm border-0 service-card">
-          <div class="card-body text-center">
-            <div class="service-icon mb-3">
-              <i class="fas fa-cogs"></i>
-            </div>
-            <h5 class="card-title mb-3" style="color: #0d3b66; font-weight: 600;">Automatización de procesos</h5>
-            <p class="card-text" style="color: #6b7280; line-height: 1.6;">Reducción de tareas manuales mediante scripts, integraciones y flujos automáticos.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm border-0 service-card">
-          <div class="card-body text-center">
-            <div class="service-icon mb-3">
-              <i class="fas fa-chart-line"></i>
-            </div>
-            <h5 class="card-title mb-3" style="color: #0d3b66; font-weight: 600;">Análisis y visualización</h5>
-            <p class="card-text" style="color: #6b7280; line-height: 1.6;">Dashboards y reportes claros para tomar decisiones basadas en datos reales.</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm border-0 service-card">
-          <div class="card-body text-center">
-            <div class="service-icon mb-3">
-              <i class="fas fa-globe"></i>
-            </div>
-            <h5 class="card-title mb-3" style="color: #0d3b66; font-weight: 600;">Creación de Páginas Web</h5>
-            <p class="card-text" style="color: #6b7280; line-height: 1.6;">Desarrollamos sitios web profesionales desde cero, incluyendo diseño personalizado, funcionalidades avanzadas y optimización para motores de búsqueda.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm border-0 service-card">
-          <div class="card-body text-center">
-            <div class="service-icon mb-3">
-              <i class="fas fa-link"></i>
-            </div>
-            <h5 class="card-title mb-3" style="color: #0d3b66; font-weight: 600;">Integración de sistemas</h5>
-            <p class="card-text" style="color: #6b7280; line-height: 1.6;">Conectamos tiendas, ERPs, Google Workspace y plataformas clave para centralizar tu operación.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm border-0 service-card">
-          <div class="card-body text-center">
-            <div class="service-icon mb-3">
-              <i class="fas fa-brain"></i>
-            </div>
-            <h5 class="card-title mb-3" style="color: #0d3b66; font-weight: 600;">Inteligencia Artificial</h5>
-            <p class="card-text" style="color: #6b7280; line-height: 1.6;">Implementación de soluciones de IA, incluyendo creación de bots, análisis predictivo y automatización avanzada de procesos.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm border-0 service-card">
-          <div class="card-body text-center">
-            <div class="service-icon mb-3">
-              <i class="fas fa-users"></i>
-            </div>
-            <h5 class="card-title mb-3" style="color: #0d3b66; font-weight: 600;">Reclutamiento y Gestión de Talento</h5>
-            <p class="card-text" style="color: #6b7280; line-height: 1.6;">Procesos de búsqueda, atracción y selección de candidatos para cubrir posiciones clave en tu empresa.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<style>
-.service-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid rgba(13,59,102,0.05);
-}
-
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(13,59,102,0.08) !important;
-}
-
-.service-icon {
-  background: linear-gradient(135deg, #0d3b66 0%, #1e4a66 100%);
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  color: white;
-  font-size: 24px;
-}
-</style>
-
-<section id="como-trabajamos" class="process-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 mx-auto text-center mb-5">
-        <h2 class="display-5 mb-3" style="color: #0d3b66; font-weight: 700;">Cómo trabajamos</h2>
-        <p class="lead text-muted">De la idea a la entrega, siempre con vos</p>
-      </div>
-    </div>
-    
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm border-0 process-card position-relative">
-          <div class="step-number">1</div>
-          <div class="card-body text-center">
-            <div class="card-icon">
-              <i class="fas fa-video"></i>
-            </div>
-            <h5 class="card-title-trabajamos">Primer contacto</h5>
-            <p class="card-text-trabajamos">Agendamos una videollamada para entender tu necesidad y objetivos específicos.</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm border-0 process-card position-relative">
-          <div class="step-number">2</div>
-          <div class="card-body text-center">
-            <div class="card-icon">
-              <i class="fas fa-lightbulb"></i>
-            </div>
-            <h5 class="card-title-trabajamos">Propuesta</h5>
-            <p class="card-text-trabajamos">Te presentamos una solución personalizada y adaptada a tu proyecto y presupuesto.</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm border-0 process-card position-relative">
-          <div class="step-number">3</div>
-          <div class="card-body text-center">
-            <div class="card-icon">
-             <i class="fas fa-code"></i>
-            </div>
-            <h5 class="card-title-trabajamos">Desarrollo</h5>
-            <p class="card-text-trabajamos">Trabajamos en etapas definidas, compartiendo avances de forma clara y transparente.</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm border-0 process-card position-relative">
-          <div class="step-number">4</div>
-          <div class="card-body text-center">
-            <div class="card-icon">
-              <i class="fas fa-search"></i>
-            </div>
-            <h5 class="card-title-trabajamos">Revisión</h5>
-            <p class="card-text-trabajamos">Recibimos tu feedback detallado y ajustamos todo lo necesario para tu satisfacción.</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm border-0 process-card position-relative">
-          <div class="step-number">5</div>
-          <div class="card-body text-center">
-            <div class="card-icon">
-              <i class="fas fa-check-circle"></i>
-            </div>
-            <h5 class="card-title-trabajamos">Entrega final</h5>
-            <p class="card-text-trabajamos">Cerramos el proyecto exitosamente y te acompañamos con soporte inicial incluido.</p>
-          </div>
-        </div>
-      </div>
-
-      
-        <div class="col-md-6 col-lg-4">
-        <div class="card h-100 shadow-sm border-0 process-card position-relative">
-          <div class="step-number">6</div>
-          <div class="card-body text-center">
-            <div class="card-icon">
-              <i class="fas fa-money-check-alt"></i>
-            </div>
-            <h5 class="card-title-trabajamos">Pago único</h5>
-            <p class="card-text-trabajamos">El pago se realiza una vez finalizado el proyecto y entregado conforme a lo acordado.</p>
-          </div>
-        </div>
-      </div>
-</section>
-
+<!-- Proyectos -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
-<section id="testimonios">
+<section id="proyectos">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mx-auto text-center mb-5">
@@ -1218,19 +1249,61 @@ function handleContact(e) {
 
       </div>
 
-      <!-- Botones navegación -->
-      <button class="btn position-absolute top-50 translate-middle-y start-0 ms-3 rounded-circle border-0 d-flex align-items-center justify-content-center portfolio-nav-btn" onclick="moveSlide(-1)" style="background: rgba(255, 255, 255, 0.9); color: #0d3b66; width: 30px; height: 30px; font-size: 1.2rem; z-index: 10; transition: all 0.3s ease;">‹</button>
-      <button class="btn position-absolute top-50 translate-middle-y end-0 me-3 rounded-circle border-0 d-flex align-items-center justify-content-center portfolio-nav-btn" onclick="moveSlide(1)" style="background: rgba(255, 255, 255, 0.9); color: #0d3b66; width: 30px; height: 30px; font-size: 1.2rem; z-index: 10; transition: all 0.3s ease;">›</button>
+<!-- BOTONES de navegación -->
+      <button class="portfolio-nav-btn left" onclick="moveSlide(-1)">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="portfolio-nav-btn right" onclick="moveSlide(1)">
+        <i class="fas fa-chevron-right"></i>
+      </button>
 
-      <!-- Dots -->
+      <!-- DOTS -->
       <div class="portfolio-dots d-flex justify-content-center gap-2 mt-4" id="portfolioDots"></div>
     </div>
   </div>
 </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
+<!-- ESTILOS -->
 <style>
+.portfolio-container {
+  position: relative;
+}
+
+.portfolio-slide {
+  display: none;
+}
+
+.portfolio-slide.active {
+  display: block;
+}
+
+
+.portfolio-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--primary, #0d3b66);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.2rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.portfolio-nav-btn.left {
+  left: -25px;
+}
+
+.portfolio-nav-btn.right {
+  right: -25px;
+}
+
 .portfolio-slide.active {
   display: flex !important;
 }
@@ -1305,8 +1378,8 @@ function handleContact(e) {
 }
 </style>
 
+<!-- SCRIPT -->
 <script>
-// PORTFOLIO SLIDER
 const slides = document.querySelectorAll('.portfolio-slide');
 const dotsContainer = document.getElementById('portfolioDots');
 let currentSlide = 0;
@@ -1321,13 +1394,10 @@ function showSlide(index) {
 }
 
 function moveSlide(dir) {
-  currentSlide += dir;
-  if(currentSlide < 0) currentSlide = slides.length - 1;
-  if(currentSlide >= slides.length) currentSlide = 0;
+  currentSlide = (currentSlide + dir + slides.length) % slides.length;
   showSlide(currentSlide);
 }
 
-// Crear dots del portfolio
 if (slides.length > 0 && dotsContainer) {
   slides.forEach((_, i) => {
     const dot = document.createElement('div');
@@ -1339,143 +1409,398 @@ if (slides.length > 0 && dotsContainer) {
     dotsContainer.appendChild(dot);
   });
 }
-
 </script>
 </main>
 
-
-
-<!-- Footer Rediseñado -->
-<footer class="site-foot">
-  <div class="foot-inner">
-    <div class="footer-left">
-      <span class="company-name">Integramos. Potenciamos. Crecemos juntos.</span>
+<!-- Servicios -->
+<section id="servicios">
+  <div class="container">
+    <div class="section-title">
+      <h2>Servicios</h2>
+      <p>Nos adaptamos a tus necesidades, paso a paso.</p>
     </div>
-    <div class="footer-center">
-      <span class="sdp-logo">SDP</span>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-cogs"></i>
+        </div>
+        <h3>Automatización de procesos</h3>
+        <p>Reducción de tareas manuales mediante scripts, integraciones y flujos automáticos que potencian tu productividad.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <h3>Análisis y visualización</h3>
+        <p>Dashboards y reportes claros para tomar decisiones basadas en datos reales y actualizados.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-globe"></i>
+        </div>
+        <h3>Creación de Páginas Web</h3>
+        <p>Desarrollamos sitios web profesionales desde cero, con diseño personalizado y optimización SEO.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-link"></i>
+        </div>
+        <h3>Integración de sistemas</h3>
+        <p>Conectamos tiendas, ERPs, Google Workspace y plataformas clave para centralizar tu operación.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h3>Inteligencia Artificial</h3>
+        <p>Implementación de soluciones de IA, incluyendo bots, análisis predictivo y automatización avanzada.</p>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <h3>Reclutamiento y Talento</h3>
+        <p>Procesos de búsqueda, atracción y selección de candidatos para posiciones clave en tu empresa.</p>
+      </div>
     </div>
-    <div class="footer-right">
-      <button class="scroll-to-top" onclick="scrollToTop()" aria-label="Volver al inicio"></button>
-      <a href="https://www.linkedin.com/company/soluci%C3%B3n-digital-pyme/" 
-         class="linkedin-icon" 
-         target="_blank" 
-         rel="noopener noreferrer"
-         aria-label="LinkedIn">
-          in
-      </a>
+
+    <div class="cta-section">
+      <a href="#contacto" class="cta-button">¡Encontrá el servicio que necesitas!</a>
     </div>
   </div>
-</footer>
+</section>
+
+<!-- Cómo trabajamos -->
+<section id="proceso" style="background: #f9f9f9;">
+  <div class="container">
+    <div class="section-title">
+      <h2>Cómo trabajamos</h2>
+      <p>De la idea a la entrega, siempre con vos</p>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-card">
+        <div class="step-number">1</div>
+        <div class="process-icon">
+          <i class="fas fa-video"></i>
+        </div>
+        <h3>Primer contacto</h3>
+        <p>Agendamos una videollamada para entender tu necesidad y objetivos específicos.</p>
+      </div>
+
+      <div class="process-card">
+        <div class="step-number">2</div>
+        <div class="process-icon">
+          <i class="fas fa-lightbulb"></i>
+        </div>
+        <h3>Propuesta</h3>
+        <p>Te presentamos una solución personalizada y adaptada a tu proyecto y presupuesto.</p>
+      </div>
+
+      <div class="process-card">
+        <div class="step-number">3</div>
+        <div class="process-icon">
+          <i class="fas fa-code"></i>
+        </div>
+        <h3>Desarrollo</h3>
+        <p>Trabajamos en etapas definidas, compartiendo avances de forma clara y transparente.</p>
+      </div>
+
+      <div class="process-card">
+        <div class="step-number">4</div>
+        <div class="process-icon">
+          <i class="fas fa-search"></i>
+        </div>
+        <h3>Revisión</h3>
+        <p>Recibimos tu feedback detallado y ajustamos todo lo necesario para tu satisfacción.</p>
+      </div>
+
+      <div class="process-card">
+        <div class="step-number">5</div>
+        <div class="process-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h3>Entrega final</h3>
+        <p>Cerramos el proyecto exitosamente y te acompañamos con soporte inicial incluido.</p>
+      </div>
+
+      <div class="process-card">
+        <div class="step-number">6</div>
+        <div class="process-icon">
+          <i class="fas fa-money-check-alt"></i>
+        </div>
+        <h3>Pago único</h3>
+        <p>El pago se realiza una vez finalizado el proyecto y entregado conforme a lo acordado.</p>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <a href="#contacto" class="cta-button">¿Cómo comenzamos?</a>
+    </div>
+  </div>
+</section>
+
+<!-- Contacto -->
+<section id="contacto" class="contact-section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Hablemos de tu proyecto</h2>
+      <p>Contanos qué necesitás y te armamos una propuesta a medida</p>
+    </div>
+
+    <div class="form-container">
+      <form id="contactForm" onsubmit="handleContact(event)">
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+        </div>
+
+        <div class="form-group">
+          <label for="company">Empresa</label>
+          <input type="text" id="company" name="company" placeholder="Nombre de tu empresa" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="country">País</label>
+          <select id="country" name="country" required>
+            <option value="">Seleccioná tu país</option>
+            <option value="AR">Argentina</option>
+            <option value="CL">Chile</option>
+            <option value="UY">Uruguay</option>
+            <option value="PE">Perú</option>
+            <option value="CO">Colombia</option>
+            <option value="MX">México</option>
+            <option value="OTHER">Otro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Mensaje</label>
+          <textarea id="message" name="message" placeholder="Contanos en qué podemos ayudarte..." rows="5" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <button type="submit">
+            <i class="fas fa-paper-plane"></i> Enviar mensaje
+          </button>
+        </div>
+
+        <div id="formAlert" class="alert"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Botón Volver al inicio -->
+<a href="#" onclick="scrollToTop(); return false;" 
+   class="scroll-top-link" 
+   title="Volver al inicio">
+  <i class="fas fa-arrow-up"></i>
+</a>
+
 
 <script>
-  function scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth' // sube suavemente
-    });
-  }
-</script>
-
-
-<script>
-  // Menu móvil
-  function toggleMobileMenu() {
-    const menu = document.getElementById('mobileMenu');
-    menu.classList.toggle('active');
-  }
-
-  // Audio toggle
-  const audioToggle = document.getElementById('audioToggle');
-  const heroAudio = document.getElementById('heroAudio');
-  
-  if (audioToggle && heroAudio) {
-    audioToggle.addEventListener('click', () => {
-      if (heroAudio.muted) {
-        heroAudio.muted = false;
-        audioToggle.innerHTML = '<i class="fas fa-volume-up"></i>';
-        audioToggle.classList.remove('muted');
-      } else {
-        heroAudio.muted = true;
-        audioToggle.innerHTML = '<i class="fas fa-volume-mute"></i>';
-        audioToggle.classList.add('muted');
-      }
-    });
-  }
-
-  // Scroll to top
-  function scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  }
-
-
-
-  // PORTFOLIO SLIDER
-  const slides = document.querySelectorAll('.portfolio-slide');
-  const dotsContainer = document.getElementById('portfolioDots');
-  let currentSlide = 0;
-
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === index);
-      if (dotsContainer.children[i]) {
-        dotsContainer.children[i].classList.toggle('active', i === index);
-      }
-    });
-  }
-
-  function moveSlide(dir) {
-    currentSlide += dir;
-    if(currentSlide < 0) currentSlide = slides.length - 1;
-    if(currentSlide >= slides.length) currentSlide = 0;
-    showSlide(currentSlide);
-  }
-
-  // Crear dots del portfolio
-  if (slides.length > 0 && dotsContainer) {
-    slides.forEach((_, i) => {
-      const dot = document.createElement('div');
-      dot.className = 'dot' + (i === 0 ? ' active' : '');
-      dot.addEventListener('click', () => {
-        currentSlide = i;
-        showSlide(currentSlide);
-      });
-      dotsContainer.appendChild(dot);
-    });
-  }
-
-  // Auto-slide del portfolio (opcional)
-  setInterval(() => {
-    moveSlide(1);
-  }, 8000);
-</script>
-
-<script>
-// Función para cerrar el menú móvil al hacer clic en un enlace
-function closeMenu() {
-  const navbarCollapse = document.getElementById('navbarNav');
-  if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-    const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
-      toggle: false
-    });
-    bsCollapse.hide();
-  }
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// También cerrar el menú al hacer clic fuera de él
-document.addEventListener('click', function(event) {
-  const navbar = document.getElementById('navbarNav');
-  const toggler = document.querySelector('.navbar-toggler');
-  
-  if (navbar && navbar.classList.contains('show')) {
-    if (!navbar.contains(event.target) && !toggler.contains(event.target)) {
-      closeMenu();
-    }
+window.addEventListener("scroll", () => {
+  const scrollLink = document.querySelector(".scroll-top-link");
+  const footer = document.querySelector("footer");
+
+  if (!footer || !scrollLink) return;
+
+  const footerTop = footer.getBoundingClientRect().top;
+  const windowHeight = window.innerHeight;
+
+  // 🔹 Mostrar solo cuando el footer es visible
+  if (footerTop <= windowHeight - 50) {
+    scrollLink.classList.add("show");
+  } else {
+    scrollLink.classList.remove("show");
   }
 });
 </script>
+
+
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <!-- Columna 1 -->
+    <div class="footer-col">
+      <h3>SDP</h3>
+      <p>Solución Digital Pyme - Transformamos tu negocio con tecnología inteligente y cercana.</p>
+      <p style="font-style: italic; margin-top: 20px;">Integramos. Potenciamos. Crecemos juntos.</p>
+    </div>
+
+    <!-- Columna 2 -->
+    <div class="footer-col">
+      <h3>Navegación</h3>
+      <ul>
+        <li><a href="#proyectos"><i class="fas fa-chevron-right"></i> Proyectos</a></li>
+        <li><a href="#servicios"><i class="fas fa-chevron-right"></i> Servicios</a></li>
+        <li><a href="#proceso"><i class="fas fa-chevron-right"></i> Cómo trabajamos</a></li>
+        <li><a href="#contacto"><i class="fas fa-chevron-right"></i> Contacto</a></li>
+      </ul>
+    </div>
+
+    <!-- Columna 3 -->
+    <div class="footer-col">
+      <h3>Servicios</h3>
+      <ul>
+        <li><a href="#servicios"><i class="fas fa-check-circle"></i> Automatización</a></li>
+        <li><a href="#servicios"><i class="fas fa-check-circle"></i> Análisis de datos</a></li>
+        <li><a href="#servicios"><i class="fas fa-check-circle"></i> Desarrollo web</a></li>
+        <li><a href="#servicios"><i class="fas fa-check-circle"></i> Integración</a></li>
+      </ul>
+    </div>
+
+    <!-- Columna 4 -->
+    <div class="footer-col">
+      <h3>Contacto</h3>
+      <ul>
+        <li><a href="mailto:contacto@sdp.com"><i class="fas fa-envelope"></i> contacto@sdp.com</a></li>
+        <li><a href="https://wa.me/5492346696420" target="_blank"><i class="fab fa-whatsapp"></i> +54 9 2346 696420</a></li>
+      </ul>
+      <h3 style="margin-top: 30px;">Seguinos</h3>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/company/soluci%C3%B3n-digital-pyme/" target="_blank" title="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-divider"></div>
+
+  <div class="footer-bottom">
+    <p>© 2025 SDP - Solución Digital Pyme. Todos los derechos reservados.</p>
+    <div class="footer-stats">
+      <span class="stars">★★★★★</span>
+      <span>5.0 en Workana</span>
+    </div>
+  </div>
+  <button class="scroll-to-top-btn" onclick="scrollToTop()" title="Volver al inicio">
+  <i class="fas fa-arrow-up"></i>
+</button>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+
+<script>
+  // Portfolio functionality
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.portfolio-slide');
+  const dotsContainer = document.getElementById('portfolioDots');
+
+  // Create dots
+  function createDots() {
+    if (dotsContainer) {
+      slides.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => goToSlide(i);
+        dotsContainer.appendChild(dot);
+      });
+    }
+  }
+
+  function goToSlide(n) {
+    currentSlide = n;
+    if (currentSlide >= slides.length) currentSlide = 0;
+    if (currentSlide < 0) currentSlide = slides.length - 1;
+    
+    slides.forEach(slide => slide.classList.remove('active'));
+    if (slides[currentSlide]) {
+      slides[currentSlide].classList.add('active');
+    }
+    
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach(dot => dot.classList.remove('active'));
+    if (dots[currentSlide]) {
+      dots[currentSlide].classList.add('active');
+    }
+  }
+
+  function nextSlide() {
+    goToSlide(currentSlide + 1);
+  }
+
+  function prevSlide() {
+    goToSlide(currentSlide - 1);
+  }
+
+  // Auto-rotate slides
+  setInterval(nextSlide, 8000);
+
+  // Initialize
+  createDots();
+
+  // Contact form
+  function handleContact(e) {
+    e.preventDefault();
+    
+    const btn = e.target.querySelector('button');
+    const alert = document.getElementById('formAlert');
+    const originalText = btn.innerHTML;
+    
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+    
+    const formData = new FormData();
+    formData.append('name', document.getElementById('name').value.trim());
+    formData.append('company', document.getElementById('company').value.trim());
+    formData.append('email', document.getElementById('email').value.trim());
+    formData.append('country', document.getElementById('country').value);
+    formData.append('message', document.getElementById('message').value.trim());
+    
+    fetch('https://script.google.com/macros/s/AKfycbxcKN8arfKz8aZB0G1WQGsmwyk54zvOwDnoyRNCk90FQd99hWUN00SOYw7pgQC2zdGg/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      body: formData
+    })
+    .then(() => {
+      alert.className = 'alert success';
+      alert.innerHTML = '<i class="fas fa-check-circle"></i> ¡Mensaje enviado! Te contactaremos pronto.';
+      alert.style.display = 'block';
+      e.target.reset();
+      
+      setTimeout(() => {
+        alert.style.display = 'none';
+      }, 5000);
+    })
+    .catch(() => {
+      alert.className = 'alert error';
+      alert.innerHTML = '<i class="fas fa-exclamation-circle"></i> Error al enviar. Intenta nuevamente o contacta via Whatsapp';
+      alert.style.display = 'block';
+    })
+    .finally(() => {
+      btn.disabled = false;
+      btn.innerHTML = originalText;
+    });
+  }
+
+  function scrollToTop() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+</script>
+
 
 </body>
 </html>
