@@ -104,19 +104,57 @@ html, body { font-size: 16px; }
     #testimonios .section-title h2 {color:var(--azul);font-size:2.2rem;margin:0 0 15px;font-weight:700;}
     #testimonios .section-title p {margin:0;color:var(--muted);font-size:1.1rem;max-width:600px;margin:0 auto;}
     
-    .portfolio-container {
-      position:relative;max-width:1400px;margin:50px auto 0;padding:0 30px;height:500px;overflow:hidden;
-    }
-    .portfolio-slider {height:100%;position:relative;}
-    .portfolio-slide {display:none;padding:60px;height:100%;box-sizing:border-box;overflow:hidden;}
-    .portfolio-slide.active {display:flex;align-items:center;gap:50px;height:100%;}
-    
-    .project-image {
-      flex:1;max-width:500px;border-radius:12px;overflow:hidden;
-      box-shadow:0 8px 24px rgba(13, 59, 102, 0.12);
-    }
-    .project-image img {width:100%;height:350px;object-fit:cover;display:block;transition:transform 0.3s ease;}
-    .project-image:hover img {transform:scale(1.02);}
+/* Portfolio Container - REEMPLAZAR */
+.portfolio-container {
+  position: relative;
+  max-width: 1400px;
+  margin: 50px auto 0;
+  padding: 0 30px;
+  min-height: 500px; /* Cambiar de height a min-height */
+  overflow: visible; /* Cambiar de hidden a visible */
+}
+
+.portfolio-slider {
+  position: relative;
+  min-height: 500px; /* Cambiar de height a min-height */
+}
+
+.portfolio-slide {
+  display: none;
+  padding: 60px 20px; /* Reducir padding lateral */
+  min-height: 500px; /* Cambiar de height a min-height */
+  box-sizing: border-box;
+}
+
+.portfolio-slide.active {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  min-height: 500px; /* Cambiar de height a min-height */
+}
+
+.project-image {
+  flex: 1;
+  max-width: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(13, 59, 102, 0.12);
+}
+
+.project-image img {
+  width: 100%;
+  height: auto; /* Cambiar de 350px a auto */
+  min-height: 300px; /* Altura mínima */
+  max-height: 400px; /* Altura máxima */
+  object-fit: contain; /* Cambiar de cover a contain para que se vea completa */
+  display: block;
+  transition: transform 0.3s ease;
+  background: #fff; /* Fondo blanco para imágenes con transparencia */
+}
+
+.project-image:hover img {
+  transform: scale(1.02);
+}
     
     .project-details {flex:1;min-width:0;}
     .company-badge {
