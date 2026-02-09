@@ -740,14 +740,14 @@ html, body { font-size: 16px; }
 .scroll-top-link {
   position: fixed;
   right: 25px;
-  bottom: 90px; /* ajustá según la altura del footer */
+  bottom: 90px;
   background-color: #0d3b66;
   color: white;
   font-size: 1.3rem;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  display: none; /* Oculto por defecto */
+  display: none;
   align-items: center;
   justify-content: center;
   text-decoration: none;
@@ -794,9 +794,150 @@ html, body { font-size: 16px; }
       gap: 15px;
     }
 
+    /* Audio button styles */
+    .audio-btn {
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
 
+    .audio-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.6);
+      transform: scale(1.05);
+    }
 
-    /* Responsive */
+    .audio-btn.playing {
+      background: rgba(255, 107, 0, 0.2);
+      border-color: #ff6b00;
+      color: #FFD166;
+    }
+
+    .audio-btn.playing i {
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+    }
+
+    /* Portfolio styles */
+    .portfolio-container {
+      position: relative;
+    }
+
+    .portfolio-slide {
+      display: none;
+    }
+
+    .portfolio-slide.active {
+      display: block;
+    }
+
+    .portfolio-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--primary, #0d3b66);
+      color: #fff;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      font-size: 1.2rem;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .portfolio-nav-btn.left {
+      left: -25px;
+    }
+
+    .portfolio-nav-btn.right {
+      right: -25px;
+    }
+
+    .portfolio-slide.active {
+      display: flex !important;
+    }
+
+    .project-card {
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: scale(1.02);
+    }
+
+    .portfolio-nav-btn:hover {
+      background: rgba(255, 107, 0, 0.9) !important;
+      color: white !important;
+      transform: translateY(-50%) scale(1.05) !important;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ddd;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: #ff6b00;
+      transform: scale(1.2);
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    /* ========================================
+       MEJORAS RESPONSIVE PARA MOBILE
+       ======================================== */
+
+    @media (max-width: 991px) {
+      /* Portfolio en tablets */
+      .portfolio-container {
+        height: auto !important;
+        padding: 0 15px !important;
+      }
+      
+      .portfolio-slide {
+        padding: 30px 15px !important;
+      }
+      
+      .project-image img {
+        height: 280px !important;
+      }
+    }
+
     @media (max-width: 768px) {
       section {
         padding: 60px 20px;
@@ -839,9 +980,105 @@ html, body { font-size: 16px; }
       .footer-stats {
         justify-content: center;
       }
+
+      /* Portfolio en móviles */
+      .portfolio-container {
+        height: auto !important;
+        padding: 0 10px !important;
+      }
+      
+      .portfolio-slide {
+        padding: 20px 10px !important;
+      }
+      
+      .row.g-4 {
+        gap: 1.5rem !important;
+      }
+      
+      .project-image img {
+        height: 250px !important;
+      }
+      
+      .company-badge {
+        font-size: 0.7rem !important;
+        padding: 5px 12px !important;
+      }
+      
+      .project-info h3 {
+        font-size: 1.5rem !important;
+      }
+      
+      .project-type {
+        font-size: 0.9rem !important;
+      }
+      
+      .project-description {
+        font-size: 0.95rem !important;
+        line-height: 1.5 !important;
+      }
+      
+      .feature-item {
+        font-size: 0.85rem !important;
+        margin-bottom: 8px;
+      }
+      
+      .project-stats {
+        flex-direction: column;
+        gap: 15px !important;
+      }
+      
+      .stat-number {
+        font-size: 1.4rem !important;
+      }
+      
+      .stat-label {
+        font-size: 0.8rem !important;
+      }
+      
+      /* Botones de navegación más pequeños en mobile */
+      .portfolio-nav-btn {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 1rem !important;
+      }
+      
+      .portfolio-nav-btn.left {
+        left: -10px !important;
+      }
+      
+      .portfolio-nav-btn.right {
+        right: -10px !important;
+      }
+      
+      /* Process grid responsive */
+      .process-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+
+      .audio-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+      }
     }
 
-    
+    @media (max-width: 576px) {
+      /* Móviles pequeños */
+      .project-image img {
+        height: 200px !important;
+      }
+      
+      .project-info h3 {
+        font-size: 1.3rem !important;
+      }
+      
+      .portfolio-nav-btn {
+        width: 35px !important;
+        height: 35px !important;
+        font-size: 0.9rem !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -871,10 +1108,10 @@ html, body { font-size: 16px; }
   <span class="whatsapp-tooltip">Contacto vía WhatsApp</span>
 </a>
 
-<!-- Estilos -->
+<!-- Estilos WhatsApp -->
 <style>
   #whatsappBtn {
-    transition: opacity 0.6s ease, transform 0.6s ease; /* más lenta */
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
   #whatsappBtn.hidden {
     opacity: 0;
@@ -882,7 +1119,6 @@ html, body { font-size: 16px; }
     pointer-events: none;
   }
 
-  /* Tooltip */
   .whatsapp-btn {
     position: relative;
     overflow: visible;
@@ -907,7 +1143,7 @@ html, body { font-size: 16px; }
   }
 </style>
 
-<!-- Script -->
+<!-- Script WhatsApp -->
 <script>
   const whatsappBtn = document.getElementById("whatsappBtn");
   let hideTimeout;
@@ -918,21 +1154,19 @@ html, body { font-size: 16px; }
   window.addEventListener("scroll", () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    if (scrollTop > 200) { // espera que el usuario scrollee un poco
+    if (scrollTop > 200) {
       clearTimeout(showTimeout);
       hideTimeout = setTimeout(() => {
         whatsappBtn.classList.add("hidden");
-      }, 400); // tarda 0.4s en desaparecer después del scroll
+      }, 400);
     } else {
       clearTimeout(hideTimeout);
       showTimeout = setTimeout(() => {
         whatsappBtn.classList.remove("hidden");
-      }, 300); // tarda 0.3s en volver a aparecer
+      }, 300);
     }
   });
 </script>
-
-
 
 <!-- Header -->
 <header>
@@ -992,63 +1226,7 @@ html, body { font-size: 16px; }
   </audio>
 </section>
 
-<!-- ESTILOS (agregar en la sección <style> del documento) -->
-<style>
-  .audio-btn {
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    flex-shrink: 0;
-  }
-
-  .audio-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.6);
-    transform: scale(1.05);
-  }
-
-  .audio-btn.playing {
-    background: rgba(255, 107, 0, 0.2);
-    border-color: #ff6b00;
-    color: #FFD166;
-  }
-
-  /* Animación para el ícono cuando está reproduciendo */
-  .audio-btn.playing i {
-    animation: pulse 1.5s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    50% {
-      transform: scale(1.1);
-      opacity: 0.8;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .audio-btn {
-      width: 45px;
-      height: 45px;
-      font-size: 1rem;
-    }
-  }
-</style>
-
-<!-- SCRIPT (agregar en la sección <script> del documento) -->
+<!-- Script Audio -->
 <script>
   const audioToggle = document.getElementById('audioToggle');
   const heroAudio = document.getElementById('heroAudio');
@@ -1056,29 +1234,28 @@ html, body { font-size: 16px; }
   if (audioToggle && heroAudio) {
     audioToggle.addEventListener('click', () => {
       if (heroAudio.paused) {
-        // Reproducir audio
         heroAudio.play().then(() => {
           audioToggle.classList.add('playing');
         }).catch(err => {
           console.log('Error al reproducir audio:', err);
         });
       } else {
-        // Pausar audio
         heroAudio.pause();
         audioToggle.classList.remove('playing');
       }
     });
 
-    // Actualizar el botón cuando el audio termina
     heroAudio.addEventListener('ended', () => {
       audioToggle.classList.remove('playing');
     });
   }
 </script>
 
-
 <!-- Main Content -->
 <main>
+
+<!-- Proyectos -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 <section id="proyectos">
   <div class="container">
@@ -1414,154 +1591,72 @@ html, body { font-size: 16px; }
   </div>
 </section>
 
-<!-- ESTILOS -->
-<style>
-.portfolio-container {
-  position: relative;
-}
-
-.portfolio-slide {
-  display: none;
-}
-
-.portfolio-slide.active {
-  display: block;
-}
-
-
-.portfolio-nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--primary, #0d3b66);
-  color: #fff;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: none;
-  font-size: 1.2rem;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.portfolio-nav-btn.left {
-  left: -25px;
-}
-
-.portfolio-nav-btn.right {
-  right: -25px;
-}
-
-.portfolio-slide.active {
-  display: flex !important;
-}
-
-.project-card {
-  transition: transform 0.3s ease;
-}
-
-.project-card:hover {
-  transform: scale(1.02);
-}
-
-.portfolio-nav-btn:hover {
-  background: rgba(255, 107, 0, 0.9) !important;
-  color: white !important;
-  transform: translateY(-50%) scale(1.05) !important;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #ddd;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.dot.active {
-  background: #ff6b00;
-  transform: scale(1.2);
-}
-
-@media (max-width: 768px) {
-  .portfolio-container {
-    height: auto !important;   /* se adapta al contenido */
-    padding: 0 20px !important;
-    position: relative;
-  }
-}
-
-  
-  .portfolio-slide {
-    padding: 40px 20px !important;
-  }
-  
-  .project-card {
-    min-height: 400px !important;
-  }
-  
-  .card-content {
-    padding: 2rem !important;
-  }
-  
-  .card-content h3 {
-    font-size: 1.8rem !important;
-  }
-  
-  .project-stats {
-    gap: 2rem !important;
-  }
-  
-
-
-@media (max-width: 640px) {
-  .project-card {
-    min-height: 350px !important;
-  }
-  
-  .card-content h3 {
-    font-size: 1.5rem !important;
-  }
-}
-</style>
-
-<!-- SCRIPT -->
+<!-- Script Portfolio -->
 <script>
-const slides = document.querySelectorAll('.portfolio-slide');
-const dotsContainer = document.getElementById('portfolioDots');
-let currentSlide = 0;
+// Portfolio Slider - Versión única corregida
+(function() {
+  const slides = document.querySelectorAll('.portfolio-slide');
+  const dotsContainer = document.getElementById('portfolioDots');
+  let currentSlide = 0;
+  let autoRotateInterval;
 
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.toggle('active', i === index);
-    if (dotsContainer.children[i]) {
-      dotsContainer.children[i].classList.toggle('active', i === index);
-    }
-  });
-}
-
-function moveSlide(dir) {
-  currentSlide = (currentSlide + dir + slides.length) % slides.length;
-  showSlide(currentSlide);
-}
-
-if (slides.length > 0 && dotsContainer) {
-  slides.forEach((_, i) => {
-    const dot = document.createElement('div');
-    dot.className = 'dot' + (i === 0 ? ' active' : '');
-    dot.addEventListener('click', () => {
-      currentSlide = i;
-      showSlide(currentSlide);
+  // Crear dots de navegación
+  function createDots() {
+    if (!dotsContainer) return;
+    
+    dotsContainer.innerHTML = '';
+    slides.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => {
+        currentSlide = i;
+        showSlide(currentSlide);
+        resetAutoRotate();
+      });
+      dotsContainer.appendChild(dot);
     });
-    dotsContainer.appendChild(dot);
-  });
-}
+  }
+
+  // Mostrar slide específico
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+    
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+  }
+
+  // Función para mover slides (usada por los botones)
+  window.moveSlide = function(direction) {
+    currentSlide = (currentSlide + direction + slides.length) % slides.length;
+    showSlide(currentSlide);
+    resetAutoRotate();
+  };
+
+  // Auto-rotación
+  function startAutoRotate() {
+    autoRotateInterval = setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }, 8000);
+  }
+
+  function resetAutoRotate() {
+    clearInterval(autoRotateInterval);
+    startAutoRotate();
+  }
+
+  // Inicializar
+  if (slides.length > 0) {
+    createDots();
+    showSlide(0);
+    startAutoRotate();
+  }
+})();
 </script>
-</main>
 
 <!-- Servicios -->
 <section id="servicios">
@@ -1762,7 +1857,6 @@ if (slides.length > 0 && dotsContainer) {
   <i class="fas fa-arrow-up"></i>
 </a>
 
-
 <script>
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1777,7 +1871,6 @@ window.addEventListener("scroll", () => {
   const footerTop = footer.getBoundingClientRect().top;
   const windowHeight = window.innerHeight;
 
-  // 🔹 Mostrar solo cuando el footer es visible
   if (footerTop <= windowHeight - 50) {
     scrollLink.classList.add("show");
   } else {
@@ -1785,8 +1878,6 @@ window.addEventListener("scroll", () => {
   }
 });
 </script>
-
-
 
 <!-- Footer -->
 <footer>
@@ -1832,7 +1923,6 @@ window.addEventListener("scroll", () => {
         <a href="https://www.linkedin.com/company/soluci%C3%B3n-digital-pyme/" target="_blank" title="LinkedIn">
           <i class="fab fa-linkedin-in"></i>
         </a>
-
       </div>
     </div>
   </div>
@@ -1854,56 +1944,6 @@ window.addEventListener("scroll", () => {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 <script>
-  // Portfolio functionality
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.portfolio-slide');
-  const dotsContainer = document.getElementById('portfolioDots');
-
-  // Create dots
-  function createDots() {
-    if (dotsContainer) {
-      slides.forEach((_, i) => {
-        const dot = document.createElement('div');
-        dot.className = 'dot' + (i === 0 ? ' active' : '');
-        dot.onclick = () => goToSlide(i);
-        dotsContainer.appendChild(dot);
-      });
-    }
-  }
-
-  function goToSlide(n) {
-    currentSlide = n;
-    if (currentSlide >= slides.length) currentSlide = 0;
-    if (currentSlide < 0) currentSlide = slides.length - 1;
-    
-    slides.forEach(slide => slide.classList.remove('active'));
-    if (slides[currentSlide]) {
-      slides[currentSlide].classList.add('active');
-    }
-    
-    const dots = document.querySelectorAll('.dot');
-    dots.forEach(dot => dot.classList.remove('active'));
-    if (dots[currentSlide]) {
-      dots[currentSlide].classList.add('active');
-    }
-  }
-
-  function nextSlide() {
-    goToSlide(currentSlide + 1);
-  }
-
-  function prevSlide() {
-    goToSlide(currentSlide - 1);
-  }
-
-  // Auto-rotate slides
-  setInterval(nextSlide, 8000);
-
-  // Initialize
-  createDots();
-</script>  
-
-<script>
 function handleContact(e) {
   e.preventDefault();
   
@@ -1911,10 +1951,8 @@ function handleContact(e) {
   const alertBox = document.getElementById('formAlert');
   const originalButtonText = submitButton.innerHTML;
   
-  // Desactivar el botón
   submitButton.disabled = true;
 
-  // Crear el contador
   let countdown = 3;
   submitButton.innerHTML = `<i class="fas fa-spinner fa-spin me-2"></i>Enviando... (${countdown})`;
 
@@ -1928,7 +1966,6 @@ function handleContact(e) {
     }
   }, 1000);
   
-  // Preparar datos del formulario
   const formData = new FormData();
   formData.append('name', document.getElementById('name').value.trim());
   formData.append('company', document.getElementById('company').value.trim());
@@ -1936,7 +1973,6 @@ function handleContact(e) {
   formData.append('email', document.getElementById('email').value.trim());
   formData.append('message', document.getElementById('message').value.trim());
   
-  // Enviar datos
   fetch('https://script.google.com/macros/s/AKfycbx5kEXm6C32Zxnn0a6bDq0HvQ9DzVD7oG5eG-wW1SV5_ajawrY8jvsd6MSkscbyzAiu/exec', {
     method: 'POST',
     mode: 'no-cors',
@@ -1968,7 +2004,6 @@ function handleContact(e) {
   });
 }
 </script>
-
 
 </body>
 </html>
