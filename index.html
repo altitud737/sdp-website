@@ -1980,35 +1980,6 @@ window.addEventListener("scroll", () => {
 <script>
 function handleContact(e) {
   e.preventDefault();
-  
-  const submitButton = e.target.querySelector('button[type="submit"]');
-  const alertBox = document.getElementById('formAlert');
-  const originalButtonText = submitButton.innerHTML;
-  
-  submitButton.disabled = true;
-
-  let countdown = 3;
-  submitButton.innerHTML = `<i class="fas fa-spinner fa-spin me-2"></i>Enviando... (${countdown})`;
-
-  const timer = setInterval(() => {
-    countdown--;
-    if (countdown > 0) {
-      submitButton.innerHTML = `<i class="fas fa-spinner fa-spin me-2"></i>Enviando... (${countdown})`;
-    } else {
-      clearInterval(timer);
-      submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Finalizando...';
-    }
-  }, 1000);
-  
-  const formData = new FormData();
-  formData.append('name', document.getElementById('name').value.trim());
-  formData.append('company', document.getElementById('company').value.trim());
-  formData.append('country', document.getElementById('country').value.trim());
-  formData.append('email', document.getElementById('email').value.trim());
-  formData.append('message', document.getElementById('message').value.trim());
-  
-function handleContact(e) {
-  e.preventDefault();
 
   const submitButton = e.target.querySelector('button[type="submit"]');
   const alertBox = document.getElementById('formAlert');
@@ -2018,60 +1989,39 @@ function handleContact(e) {
   submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
 
   const templateParams = {
-    name:    document.getElementById('name').value.trim(),
+    name: document.getElementById('name').value.trim(),
     company: document.getElementById('company').value.trim(),
     country: document.getElementById('country').value.trim(),
-    email:   document.getElementById('email').value.trim(),
+    email: document.getElementById('email').value.trim(),
     message: document.getElementById('message').value.trim()
   };
 
   emailjs.send('service_f9i5qor', 'template_7zfyg1c', templateParams)
     .then(() => {
-      submitButton.innerHTML = originalButtonText;
       submitButton.disabled = false;
+      submitButton.innerHTML = originalButtonText;
 
       alertBox.className = 'alert success';
       alertBox.style.display = 'block';
-      alertBox.innerHTML = '<i class="fas fa-check-circle me-2"></i>Tu consulta fue recibida correctamente. ¡Nos ponemos en contacto a la brevedad!';
+      alertBox.innerHTML = '<i class="fas fa-check-circle me-2"></i>Mensaje enviado correctamente';
+
       document.getElementById('contactForm').reset();
 
-      setTimeout(() => { alertBox.style.display = 'none'; }, 5000);
+      setTimeout(() => {
+        alertBox.style.display = 'none';
+      }, 5000);
     })
     .catch((error) => {
       console.error('EmailJS error:', error);
-      submitButton.innerHTML = originalButtonText;
+
       submitButton.disabled = false;
+      submitButton.innerHTML = originalButtonText;
 
       alertBox.className = 'alert error';
       alertBox.style.display = 'block';
-      alertBox.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i>Error al enviar. Por favor intentá de nuevo o escribinos por WhatsApp.';
+      alertBox.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i>Error al enviar el mensaje';
     });
 }
-    clearInterval(timer);
-    submitButton.innerHTML = originalButtonText;
-    submitButton.disabled = false;
-
-    alertBox.className = 'alert success';
-    alertBox.style.display = 'block';
-    alertBox.innerHTML = '<i class="fas fa-check-circle me-2"></i>Tu consulta fue recibida correctamente. Nuestro equipo se pondrá en contacto con vos a la brevedad. ¡Gracias por confiar en nosotros!';
-    document.getElementById('contactForm').reset();
-
-    setTimeout(() => {
-      alertBox.style.display = 'none';
-    }, 5000);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    clearInterval(timer);
-    submitButton.disabled = false;
-    submitButton.innerHTML = originalButtonText;
-
-    alertBox.className = 'alert error';
-    alertBox.style.display = 'block';
-    alertBox.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i>Error al enviar el mensaje. Por favor intenta nuevamente.';
-  });
-}
 </script>
-
 </body>
 </html>
